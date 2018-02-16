@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import './styles/LoginView.css'
 
 class LoginView extends Component {
+
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+  }
+
+  login(event) {
+    event.preventDefault();
+  }
+
   render(){
     return(
       <form>
@@ -10,7 +20,7 @@ class LoginView extends Component {
           <input type="text"/>
           <label>Password:</label>
           <input type="text"/>
-          <button>Login</button>
+          <button onClick={this.login}>Login</button>
         </div>
       </form>
     );
