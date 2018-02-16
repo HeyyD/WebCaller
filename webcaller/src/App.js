@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import LoginView from './LoginView';
+import MainView from './MainView';
 
 class App extends Component {
   render() {
-    return <LoginView/>
+    return <MainView/>
   }
 }
 

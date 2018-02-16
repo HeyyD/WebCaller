@@ -1,0 +1,14 @@
+#profile {
+  float: right;
+}
+
+#profile p, #profile button {
+  display: inline-block;
+  margin: 10px;
+}
+
+#contacts {
+  background: lightcyan;
+  width: 100%;
+  float: left; 
+}
