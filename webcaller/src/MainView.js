@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/MainView.css'
+import Contacts from './Contacts';
 
 class MainView extends Component {
   render() {
@@ -11,6 +12,7 @@ class MainView extends Component {
             </div>
             <div id="contacts">
                 <p>Contacts</p>
+                <Contacts/>
             </div>
           </div>
     ); 
