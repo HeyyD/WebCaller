@@ -10,6 +10,12 @@ class Contacts extends Component {
           <th>Name</th>
           <th>Company</th>
         </tr>
+        <tr>
+          <td>+35840666666</td>
+          <td>Banaani Tom</td>
+          <td>PornHub</td>
+          <td><button>Call</button></td>
+        </tr>
       </table>
     );
   }
