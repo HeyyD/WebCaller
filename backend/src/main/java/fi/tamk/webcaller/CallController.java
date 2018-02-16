@@ -49,7 +49,20 @@ public class CallController {
     }
 
     public void makeCall() {
-        
+        try {
+            TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("Url", "https://brodan.biz/call.xml"));
+            params.add(new BasicNameValuePair("To", "+15555555555")); //Add real number here
+            params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
+
+            CallFactory callFactory = client.getAccount().getCallFactory();
+            Call call = callFactory.create(params);
+        }
+        catch (TwilioRestException e) {
+            System.out.println(e.getErrorMessage());
+        }
     }
 
 }
