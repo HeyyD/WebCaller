@@ -5,8 +5,10 @@ class LoginView extends Component {
   render(){
     return(
       <form>
-        Username: <input type="text"/>
-        Password: <input type="text"/>
+        <label>Username:</label>
+        <input type="text"/>
+        <label>Password:</label>
+        <input type="text"/>
       </form>
     );
   }
