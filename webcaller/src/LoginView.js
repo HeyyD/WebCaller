@@ -10,6 +10,7 @@ class LoginView extends Component {
           <input type="text"/>
           <label>Password:</label>
           <input type="text"/>
+          <button>Login</button>
         </div>
       </form>
     );
