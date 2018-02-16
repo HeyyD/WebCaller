@@ -25,7 +25,8 @@ public class CallController {
 
     @RequestMapping("/testcall")
     public String call(){
-        sendSMS();
+        //sendSMS();
+        makeCall();
         return "testcall";
     }
 
