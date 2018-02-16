@@ -1,5 +1,7 @@
-input, label {
+div {
     text-align: center;
-    margin: auto;
-  	display: block;
+}
+label, input {
+  display: block;
+  margin: auto;
 }
