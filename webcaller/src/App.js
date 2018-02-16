@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import LoginView from './LoginView';
+import MainView from './MainView';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.state = {"loggedIn": false};
+  }
+
+  login(event){
+    event.preventDefault();
+    this.setState({"loggedIn": !this.state.loggedIn});
+  }
+
   render() {
-    return <LoginView/>
+    if(this.state.loggedIn)
+      return <MainView onClick={this.login}/>
+    else
+      return <LoginView onClick={this.login}/>
   }
 }
 

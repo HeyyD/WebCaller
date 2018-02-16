@@ -5,11 +5,6 @@ class LoginView extends Component {
 
   constructor(props) {
     super(props);
-    this.login = this.login.bind(this);
-  }
-
-  login(event) {
-    event.preventDefault();
   }
 
   render(){
@@ -20,7 +15,7 @@ class LoginView extends Component {
           <input type="text"/>
           <label>Password:</label>
           <input type="text"/>
-          <button onClick={this.login}>Login</button>
+          <button onClick={this.props.onClick}>Login</button>
         </div>
       </form>
     );

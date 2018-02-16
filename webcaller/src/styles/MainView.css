@@ -1,0 +1,29 @@
+#profile {
+  float: right;
+}
+
+#profile p, #profile button {
+  display: inline-block;
+  margin: 10px;
+}
+
+#contacts {
+  background: lightcyan;
+  width: 100%;
+  float: left; 
+}
+
+table{
+  text-align: left;
+  width: 500pt;
+}
+
+table, td {
+  padding: 5px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+td > button {
+  width: 100%;
+}
