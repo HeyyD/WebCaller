@@ -25,29 +25,10 @@ public class CallController {
 
     @RequestMapping("/testcall")
     public String call(){
-        //sendSMS();
         makeCall();
         return "testcall";
     }
 
-    public void sendSMS() {
-        try {
-            TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
-
-            // Build a filter for the MessageList
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("Body", "Hello, World!"));
-            params.add(new BasicNameValuePair("To", "+358400366613")); //Add real number here
-            params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
-
-            MessageFactory messageFactory = client.getAccount().getMessageFactory();
-            Message message = messageFactory.create(params);
-            System.out.println(message.getSid());
-        }
-        catch (TwilioRestException e) {
-            System.out.println(e.getErrorMessage());
-        }
-    }
 
     public void makeCall() {
         try {
