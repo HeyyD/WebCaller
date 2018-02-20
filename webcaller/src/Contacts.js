@@ -8,16 +8,28 @@ class Contacts extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {"addContactView": false};
+    this.addContact = this.addContact.bind(this);
+  }
+
+  addContact(){
+    this.setState({"addContactView": !this.state.addContactView});
   }
 
   render() {
-    //TODO: Contact class
-    return <ContactList/>
+    if(!this.state.addContactView)
+      return <ContactList onClick={this.addContact}/>
+    else return <p>Jee</p>
   }
 }
 export default Contacts;
 
 class ContactList extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
   render(){
     return (
       <div>
@@ -38,7 +50,7 @@ class ContactList extends Component {
           </tr>
         </tbody>
       </table>
-      <button>Add Contact</button>
+      <button onClick={this.props.onClick}>Add Contact</button>
     </div>
     );
   }
