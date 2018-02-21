@@ -25,6 +25,7 @@ class Contacts extends Component {
                       company: this.state.company};
 
     this.contacts.push(newContact);
+    this.changeAddContactView();
   }
 
   handleChange(event){
@@ -64,34 +65,40 @@ class ContactList extends Component {
 
   constructor(props){
     super(props);
-    
+    this.createContactList = this.createContactList.bind(this);
   }
 
   createContactList(){
+    let contactList = this.props.contacts;
+    let tableRows = [];
     
+    for(let i = 0; i < contactList.length; i++) {
+      tableRows.push(<tr key={i}>
+                      <td>{contactList[i].phone}</td>
+                      <td>{contactList[i].name}</td>
+                      <td>{contactList[i].company}</td>
+                      <td><button>Call</button></td>
+                    </tr>);
+    }
+    return tableRows;
   }
 
-  render(){
+  render(){    
     return (
       <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Phone</th>
-            <th>Name</th>
-            <th>Company</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>+35840666666</td>
-            <td>Banaani Tom</td>
-            <td>PornHub</td>
-            <td><button>Call</button></td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={this.props.onClick}>Add Contact</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Phone</th>
+              <th>Name</th>
+              <th>Company</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.createContactList()}
+          </tbody>
+        </table>
+        <button onClick={this.props.onClick}>Add Contact</button>
     </div>
     );
   }
