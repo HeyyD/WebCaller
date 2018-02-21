@@ -36,7 +36,7 @@ class Contacts extends Component {
 
             <div id="lastRow">
               <button>Add Contact</button>
-              <button>Cancel</button>
+              <button onClick={this.changeAddContactView}>Cancel</button>
             </div>
           </div>
       );
