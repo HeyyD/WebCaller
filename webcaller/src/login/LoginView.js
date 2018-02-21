@@ -5,7 +5,7 @@ class LoginView extends Component {
 
   render(){
     return(
-      <form>
+      <form id="login">
         <div>
           <label>Username:</label>
           <input type="text"/>

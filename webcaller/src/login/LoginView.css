@@ -1,7 +1,9 @@
-div {
-    text-align: center;
-}
-label, input {
-  display: block;
+#login div {
+  text-align: center;
   margin: auto;
+}
+
+#login label, #login button{
+  margin: 10px auto 10px auto;
+  display: block;
 }
