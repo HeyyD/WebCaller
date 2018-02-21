@@ -61,6 +61,16 @@ class Contacts extends Component {
 export default Contacts;
 
 class ContactList extends Component {
+
+  constructor(props){
+    super(props);
+    
+  }
+
+  createContactList(){
+    
+  }
+
   render(){
     return (
       <div>
