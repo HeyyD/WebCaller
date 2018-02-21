@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './styles/MainView.css'
 
-let contacts;
+//let contacts;
 
 class Contacts extends Component {
 
@@ -17,19 +17,28 @@ class Contacts extends Component {
   }
 
   render() {
-    if(!this.state.addContactView)
-      return <ContactList onClick={this.addContact}/>
-    else return <p>Jee</p>
+    if(this.state.addContactView)
+      return (
+        <div>
+          <form>
+            <label>Phone:</label>
+            <input type="number"/>
+            <label>Name:</label>
+            <input type="text"/>
+            <label>Company:</label>
+            <input type="text"/>
+            <button>Add Contact</button>
+            <button>Cancel</button>
+          </form>
+        </div>
+      );
+    else
+      return <ContactList onClick={this.addContact}/>;
   }
 }
 export default Contacts;
 
 class ContactList extends Component {
-
-  constructor(props){
-    super(props);
-  }
-
   render(){
     return (
       <div>
