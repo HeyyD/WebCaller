@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import './styles/LoginView.css'
+import './LoginView.css'
 
 class LoginView extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return(
-      <form>
+      <form id="login">
         <div>
           <label>Username:</label>
           <input type="text"/>

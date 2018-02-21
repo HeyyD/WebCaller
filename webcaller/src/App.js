@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LoginView from './LoginView';
-import MainView from './MainView';
+import LoginView from './login/LoginView';
+import MainView from './main_view/MainView';
 
 class App extends Component {
 

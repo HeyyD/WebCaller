@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import './styles/MainView.css'
+import './MainView.css'
 import Contacts from './Contacts';
 
 class MainView extends Component {
-
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
           <div>
