@@ -13,17 +13,6 @@
   float: left; 
 }
 
-form{
-  margin: auto;
-  width: 50%;
-}
-
-input, label {
-  margin: 10pt;
-  text-align: left;
-  width: 100%;
-}
-
 table{
   text-align: left;
   width: 500pt;

@@ -1,0 +1,19 @@
+
+#lastRow{
+  text-align: center;
+  margin-top: 5pt;
+}
+
+#addContact {
+  margin: auto;
+  display: table;
+}
+
+#addContact div {
+  display: table-row;
+}
+
+#addContact label, #addContact input{
+  margin: 5pt;
+  display: table-cell;
+}

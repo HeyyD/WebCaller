@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './MainView.css'
+import './AddContact.css'
 
 //let contacts;
 
@@ -19,18 +20,25 @@ class Contacts extends Component {
   render() {
     if(this.state.addContactView)
       return (
-        <div>
-          <form>
-            <label>Phone:</label>
-            <input type="number"/>
-            <label>Name:</label>
-            <input type="text"/>
-            <label>Company:</label>
-            <input type="text"/>
-            <button>Add Contact</button>
-            <button>Cancel</button>
-          </form>
-        </div>
+          <div>
+            <form id="addContact">
+              <div>
+                <label>Phone:</label>
+                <input type="number"/>
+              </div>
+              <div>
+                <label>Name:</label>
+                <input type="text"/>
+              </div>
+                <label>Company:</label>
+                <input type="text"/>
+            </form>
+
+            <div id="lastRow">
+              <button>Add Contact</button>
+              <button>Cancel</button>
+            </div>
+          </div>
       );
     else
       return <ContactList onClick={this.addContact}/>;
