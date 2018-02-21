@@ -24,7 +24,7 @@ class Contacts extends Component {
   }
 
   handleChange(event){
-    console.log(event.target.value);
+    this.setState({[event.target.name]: event.target.value});
   }
 
   render() {
@@ -34,14 +34,14 @@ class Contacts extends Component {
             <form id="addContact">
               <div>
                 <label>Phone:</label>
-                <input type="number" onChange={this.handleChange}/>
+                <input type="number" name="phone" onChange={this.handleChange}/>
               </div>
               <div>
                 <label>Name:</label>
-                <input type="text"/>
+                <input type="text" name="name" onChange={this.handleChange}/>
               </div>
                 <label>Company:</label>
-                <input type="text"/>
+                <input type="text" name="company" onChange={this.handleChange}/>
             </form>
 
             <div id="lastRow">
