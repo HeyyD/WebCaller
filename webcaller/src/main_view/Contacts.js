@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles/MainView.css'
+import './MainView.css'
 
 //let contacts;
 
