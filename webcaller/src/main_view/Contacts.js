@@ -98,7 +98,7 @@ class ContactList extends Component {
             {this.createContactList()}
           </tbody>
         </table>
-        <button onClick={this.props.onClick}>Add Contact</button>
+        <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
     </div>
     );
   }

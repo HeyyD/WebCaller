@@ -9,19 +9,24 @@
 
 #contacts {
   background: lightcyan;
+  text-align: center;
   width: 100%;
   float: left; 
 }
 
-table{
+#contacts table{
   text-align: left;
   width: 500pt;
 }
 
-table, td {
+#contacts table, td {
   padding: 5px;
   margin: auto;
   border: 1px solid black;
+}
+
+#addContactButton {
+  margin: 10pt;
 }
 
 td > button {
