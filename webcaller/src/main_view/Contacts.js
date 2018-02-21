@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import './MainView.css'
 import './AddContact.css'
 
-//let contacts;
-
 class Contacts extends Component {
+
+  contacts = [];
 
   constructor(props) {
     super(props);
@@ -20,7 +20,11 @@ class Contacts extends Component {
   }
 
   addContact(){
-    console.log('jee');
+    let newContact = {phone: this.state.phone,
+                      name: this.state.name,
+                      company: this.state.company};
+
+    this.contacts.push(newContact);
   }
 
   handleChange(event){
@@ -51,7 +55,7 @@ class Contacts extends Component {
           </div>
       );
     else
-      return <ContactList onClick={this.changeAddContactView}/>;
+      return <ContactList onClick={this.changeAddContactView} contacts={this.contacts}/>;
   }
 }
 export default Contacts;
