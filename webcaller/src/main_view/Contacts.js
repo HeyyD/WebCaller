@@ -10,10 +10,10 @@ class Contacts extends Component {
   constructor(props) {
     super(props);
     this.state = {"addContactView": false};
-    this.addContact = this.addContact.bind(this);
+    this.changeAddContactView = this.changeAddContactView.bind(this);
   }
 
-  addContact(){
+  changeAddContactView(){
     this.setState({"addContactView": !this.state.addContactView});
   }
 
@@ -41,7 +41,7 @@ class Contacts extends Component {
           </div>
       );
     else
-      return <ContactList onClick={this.addContact}/>;
+      return <ContactList onClick={this.changeAddContactView}/>;
   }
 }
 export default Contacts;
