@@ -1,7 +1,12 @@
 
 #lastRow{
   text-align: center;
-  margin-top: 5pt;
+  margin: 5pt;
+}
+
+#lastRow button {
+  margin: 5pt;
+  width: 100pt;
 }
 
 #addContact {
