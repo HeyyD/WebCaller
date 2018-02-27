@@ -4,3 +4,10 @@ import Contacts from './contacts/Contacts.jsx';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
+FlowRouter.route('/', {
+    action() {
+        mount(MainLayout, {
+            content: (<p></p>)
+        })
+    }
+});
