@@ -67,6 +67,10 @@ class ContactList extends Component {
     this.createContactList = this.createContactList.bind(this);
   }
 
+  makeCall(number){
+    
+  }
+
   createContactList(){
     let contactList = this.props.contacts;
     let tableRows = [];
