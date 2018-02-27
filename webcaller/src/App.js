@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import LoginView from './login/LoginView';
+import MainView from './main_view/MainView';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.state = {"loggedIn": false};
+  }
+
+  login(event){
+    event.preventDefault();
+    this.setState({"loggedIn": !this.state.loggedIn});
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    if(this.state.loggedIn)
+      return <MainView onClick={this.login}/>
+    else
+      return <LoginView onClick={this.login}/>
   }
 }
 
