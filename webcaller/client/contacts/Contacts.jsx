@@ -70,12 +70,6 @@ class ContactList extends Component {
   }
 
   makeCall(){
-    var client = new Twilio({
-      from: Meteor.settings.TWILIO.FROM,
-      sid: Meteor.settings.TWILIO.SID,
-      token: Meteor.settings.TWILIO.TOKEN
-    });
-
     client.makeCall('+358400366613');
   }
 
