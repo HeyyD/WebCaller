@@ -8,6 +8,6 @@ var client = new Twilio({
 
 Meteor.methods({
     makeCall(number){
-
+        twilio.makeCall('+358400366613');
     }
 })
