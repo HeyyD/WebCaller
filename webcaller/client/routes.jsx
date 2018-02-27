@@ -7,7 +7,7 @@ import {MainLayout} from './layouts/MainLayout.jsx';
 FlowRouter.route('/', {
     action() {
         mount(MainLayout, {
-            content: (<p></p>)
+            content: (<Contacts />)
         })
     }
 });
