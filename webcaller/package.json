@@ -1,16 +1,14 @@
 {
   "name": "webcaller",
-  "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.40",
+    "meteor-node-stubs": "^0.3.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "react-mounter": "^1.2.0"
   }
 }

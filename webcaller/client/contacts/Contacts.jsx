@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import './MainView.css'
-import './AddContact.css'
+import './styles/AddContact.css'
 
 class Contacts extends Component {
 
