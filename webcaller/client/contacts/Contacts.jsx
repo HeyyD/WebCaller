@@ -70,7 +70,7 @@ class ContactList extends Component {
   }
 
   makeCall(){
-    client.makeCall('+358400366613');
+    Meteor.call('makeCall', 'asdf');
   }
 
   createContactList(){
