@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Twilio from 'meteor/dispatch:twilio';
+import Meteor from 'meteor/meteor';
 
-import './styles/AddContact.css'
+import './styles/AddContact.css';
 
 class Contacts extends Component {
 
@@ -67,8 +69,14 @@ class ContactList extends Component {
     this.createContactList = this.createContactList.bind(this);
   }
 
-  makeCall(number){
-    
+  makeCall(){
+    var client = new Twilio({
+      from: Meteor.settings.TWILIO.FROM,
+      sid: Meteor.settings.TWILIO.SID,
+      token: Meteor.settings.TWILIO.TOKEN
+    });
+
+    client.makeCall('+358400366613');
   }
 
   createContactList(){
@@ -80,7 +88,7 @@ class ContactList extends Component {
                       <td>{contactList[i].phone}</td>
                       <td>{contactList[i].name}</td>
                       <td>{contactList[i].company}</td>
-                      <td><button>Call</button></td>
+                      <td><button onClick={this.makeCall}>Call</button></td>
                     </tr>);
     }
     return tableRows;
