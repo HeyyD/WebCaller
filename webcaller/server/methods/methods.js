@@ -12,7 +12,10 @@ Meteor.methods({
     makeCall(number){
         app.post('/voice', (request, response) => {
             const twiml = new VoiceResponse();
-            twiml.say({ voice: 'alice' }, 'hello world!');    
+            twiml.say({ voice: 'alice' }, 'hello world!');
+            
+            response.type('text/xml');
+            response.send(twiml.toString());
         });
         client.calls.create({
           url: 'http://koti.tamk.fi/~c6samhau/call.xml',
