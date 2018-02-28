@@ -4,16 +4,14 @@ var authToken = '0e337a0dd91ddb837ed3d4370ade02e9';   // Your Auth Token from ww
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
-
-
-
 Meteor.methods({
     makeCall(number){
-        client.messages.create({
-            body: 'Hello from Node',
-            to: '+358400366613',  // Text this number
-            from: '+358248092145' // From a valid Twilio number
+        console.log(client);
+        client.calls.create({
+          url: 'http://demo.twilio.com/docs/voice.xml',
+          to: '+14155551212',
+          from: '+15017250604',
         })
-        .then((message) => console.log(message.sid));        
+        .then(call => process.stdout.write(call.sid));       
     }
 });
