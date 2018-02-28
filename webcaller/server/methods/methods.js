@@ -10,9 +10,10 @@ var client = new twilio(accountSid, authToken);
 
 Meteor.methods({
     makeCall(number){
-        const twiml = new VoiceResponse();
-        twiml.say({ voice: 'alice' }, 'hello world!');
-
+        app.post('/voice', (request, response) => {
+            const twiml = new VoiceResponse();
+            twiml.say({ voice: 'alice' }, 'hello world!');    
+        });
         client.calls.create({
           url: 'http://koti.tamk.fi/~c6samhau/call.xml',
           to: number,
