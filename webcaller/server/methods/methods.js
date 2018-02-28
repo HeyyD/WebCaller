@@ -9,8 +9,8 @@ Meteor.methods({
         console.log(client);
         client.calls.create({
           url: 'http://koti.tamk.fi/~c6samhau/call.xml',
-          to: '+14155551212',
-          from: '+15017250604',
+          to: '+358400366613',
+          from: '+358248092145'
         })
         .then(call => process.stdout.write(call.sid));       
     }
