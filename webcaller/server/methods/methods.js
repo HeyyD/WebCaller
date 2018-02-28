@@ -17,6 +17,8 @@ Meteor.methods({
             response.type('text/xml');
             response.send(twiml.toString());
         });
+        app.listen(3000);
+        
         client.calls.create({
           url: 'http://koti.tamk.fi/~c6samhau/call.xml',
           to: number,
