@@ -24,7 +24,6 @@ ddp-rate-limiter@1.0.7
 ddp-server@2.1.2
 deps@1.0.12
 diff-sequence@1.1.0
-dispatch:twilio@1.1.0
 dynamic-import@0.3.0
 ecmascript@0.10.5
 ecmascript-runtime@0.5.0

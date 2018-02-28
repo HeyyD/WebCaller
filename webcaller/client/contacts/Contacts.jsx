@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Twilio from 'meteor/dispatch:twilio';
-import Meteor from 'meteor/meteor';
 
 import './styles/AddContact.css';
 
@@ -39,8 +37,8 @@ class Contacts extends Component {
           <div>
             <form id="addContact">
               <div>
-                <label>Phone:</label>
                 <input type="number" name="phone" onChange={this.handleChange}/>
+                <label>Phone:</label>
               </div>
               <div>
                 <label>Name:</label>
@@ -70,7 +68,9 @@ class ContactList extends Component {
   }
 
   makeCall(){
-    Meteor.call('makeCall', 'asdf');
+    Meteor.call('makeCall', 'asd', (error) => {
+      console.log('hi!');
+    });
   }
 
   createContactList(){
