@@ -8,7 +8,7 @@ Meteor.methods({
     makeCall(number){
         console.log(client);
         client.calls.create({
-          url: 'http://demo.twilio.com/docs/voice.xml',
+          url: 'http://koti.tamk.fi/~c6samhau/call.xml',
           to: '+14155551212',
           from: '+15017250604',
         })
