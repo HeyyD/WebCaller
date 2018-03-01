@@ -6,14 +6,17 @@ var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
 const twiml = new VoiceResponse();
-
 twiml.say({ voice: 'alice' }, 'hello world!');
+
+Picker.route('/call', function(params, req, res, next) {
+    res.end(twiml.toString());
+});
 
 
 Meteor.methods({
     makeCall(number){        
         client.calls.create({
-          url: 'http://koti.tamk.fi/~c6samhau/call.xml',
+          url: 'https://a9c7f8af.ngrok.io/call',
           to: number,
           from: '+358248092145'
         })
