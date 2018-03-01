@@ -5,18 +5,21 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
-const twiml = new VoiceResponse();
-twiml.say({ voice: 'alice' }, 'hello world!');
 
-Picker.route('/call', function(params, req, res, next) {
-    res.end(twiml.toString());
-});
 
 
 Meteor.methods({
     makeCall(number){        
+        Picker.route('/call', function(params, req, res, next) {
+            const twiml = new VoiceResponse();
+            const dial = twiml.dial();
+            dial.number(number.toString());
+            res.writeHead(200, {'Content-Type': 'text/xml'});
+            res.end(twiml.toString());
+        });
+
         client.calls.create({
-          url: 'https://a9c7f8af.ngrok.io/call',
+          url: 'https://cef7144b.ngrok.io/call',
           to: number,
           from: '+358248092145'
         })
