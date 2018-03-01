@@ -37,8 +37,8 @@ class Contacts extends Component {
           <div>
             <form id="addContact">
               <div>
-                <input type="number" name="phone" onChange={this.handleChange}/>
                 <label>Phone:</label>
+                <input type="number" name="phone" onChange={this.handleChange}/>
               </div>
               <div>
                 <label>Name:</label>
