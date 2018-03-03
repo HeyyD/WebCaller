@@ -11,3 +11,7 @@ FlowRouter.route('/', {
         })
     }
 });
+
+FlowRouter.route('/projects', {
+
+});
