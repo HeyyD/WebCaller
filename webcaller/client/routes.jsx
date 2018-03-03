@@ -13,5 +13,9 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/projects', {
-
+    action(){
+        mount(MainLayout, {
+            content: (<ProjectPage />)
+        })
+    }
 });
