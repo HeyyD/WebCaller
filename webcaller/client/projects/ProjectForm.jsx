@@ -8,7 +8,7 @@ export default class ProjectForm extends React.Component {
         this.state = ({
             projectName: "",
             projectDescription: "",
-            projectLists: [],
+            callLists: [],
             projectAgents: []
         });
 
