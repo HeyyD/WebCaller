@@ -26,6 +26,15 @@ Meteor.methods({
         .then(call => process.stdout.write(call.sid));       
     },
     addProject(project){
-        
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+        CallProjects.insert({
+            name: project.name,
+            description: project.description,
+            callLists: project.callLists,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
     }
 });
