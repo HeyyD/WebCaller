@@ -8,7 +8,8 @@ export default class ProjectForm extends React.Component {
         this.state = ({
             projectName: "",
             projectDescription: "",
-            projectLists: []
+            projectLists: [],
+            projectAgents: []
         });
 
         this.handleChange = this.handleChange.bind(this);
@@ -23,7 +24,8 @@ export default class ProjectForm extends React.Component {
         let project = {
             name: this.state.projectName,
             description: this.state.projectDescription,
-            callLists: this.state.projectLists
+            callLists: this.state.projectLists,
+            agents: this.state.agents
         };
         Meteor.call('addProject', project, (error) => console.log("error"));
     }
