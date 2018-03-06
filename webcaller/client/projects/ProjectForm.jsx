@@ -18,6 +18,10 @@ export default class ProjectForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    addProject(){
+        
+    }
+
     render(){
         return(
             <form>
@@ -25,7 +29,7 @@ export default class ProjectForm extends React.Component {
                 <input type="text" name="projectName" onChange={this.handleChange}/>
                 <label>Description:</label>
                 <input type="text" name="projectDescription" onChange={this.handleChange}/>
-                <button onClick={this.addContact}>Add Contact</button>
+                <button onClick={this.addProject}>Add Contact</button>
             </form>
         );
     }
