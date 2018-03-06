@@ -12,6 +12,7 @@ export default class ProjectForm extends React.Component {
         });
 
         this.handleChange = this.handleChange.bind(this);
+        this.addProject = this.addProject.bind(this);
     }
 
     handleChange(event){
@@ -19,7 +20,7 @@ export default class ProjectForm extends React.Component {
     }
 
     addProject(){
-        
+
     }
 
     render(){
