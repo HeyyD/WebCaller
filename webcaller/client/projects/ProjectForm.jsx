@@ -15,9 +15,9 @@ export default class ProjectForm extends React.Component {
         return(
             <form>
                 <label>Project name:</label>
-                <input type="text" name="projectName" onChange={console.log("hi")}/>
+                <input type="text" name="projectName" onChange={handleChange}/>
                 <label>Description:</label>
-                <input type="text" name="projectDescription" onChange={console.log("hi")}/>
+                <input type="text" name="projectDescription" onChange={handleChange}/>
                 <button onClick={this.addContact}>Add Contact</button>
             </form>
 
