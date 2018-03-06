@@ -7,6 +7,9 @@ export default class ProjectForm extends React.Component {
         super(props);
     }
 
+    handleChange(event){
+        this.setState({[event.target.name]: event.target.value});
+    }
 
     render(){
         return(
