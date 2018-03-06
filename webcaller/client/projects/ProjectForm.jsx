@@ -10,6 +10,7 @@ export default class ProjectForm extends React.Component {
                 <input type="text" name="projectName" onChange={console.log("hi")}/>
                 <label>Description:</label>
                 <input type="text" name="projectDescription" onChange={console.log("hi")}/>
+                <button onClick={this.addContact}>Add Contact</button>
             </form>
 
         );
