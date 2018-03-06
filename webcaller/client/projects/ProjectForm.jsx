@@ -5,6 +5,7 @@ export default class ProjectForm extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = ({projectName: "moi"})
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -16,9 +17,9 @@ export default class ProjectForm extends React.Component {
         return(
             <form>
                 <label>Project name:</label>
-                <input type="text" name="projectName" onChange={handleChange}/>
+                <input type="text" name="projectName" onChange={this.handleChange}/>
                 <label>Description:</label>
-                <input type="text" name="projectDescription" onChange={handleChange}/>
+                <input type="text" name="projectDescription" onChange={this.handleChange}/>
                 <button onClick={this.addContact}>Add Contact</button>
             </form>
 
