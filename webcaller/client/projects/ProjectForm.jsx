@@ -5,7 +5,12 @@ export default class ProjectForm extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = ({projectName: "moi"})
+        this.state = ({
+            projectName: "",
+            projectDescription: "",
+            projectLists: []
+        });
+        
         this.handleChange = this.handleChange.bind(this);
     }
 
