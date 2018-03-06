@@ -24,5 +24,8 @@ Meteor.methods({
           from: '+358248092145'
         })
         .then(call => process.stdout.write(call.sid));       
+    },
+    addProject(project){
+        
     }
 });

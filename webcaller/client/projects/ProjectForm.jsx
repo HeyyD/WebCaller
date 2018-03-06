@@ -10,7 +10,7 @@ export default class ProjectForm extends React.Component {
             projectDescription: "",
             projectLists: []
         });
-        
+
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -27,7 +27,6 @@ export default class ProjectForm extends React.Component {
                 <input type="text" name="projectDescription" onChange={this.handleChange}/>
                 <button onClick={this.addContact}>Add Contact</button>
             </form>
-
         );
     }
 
