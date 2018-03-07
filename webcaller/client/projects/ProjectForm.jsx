@@ -36,8 +36,8 @@ export default class ProjectForm extends React.Component {
                 <label>Project name:</label>
                 <input type="text" name="projectName" onChange={this.handleChange}/>
                 <label>Description:</label>
-                <input type="text" name="projectDescription" onChange={this.handleChange}/>
-                <button onClick={this.addProject}>Add Contact</button>
+                <textarea name="projectDescription" onChange={this.handleChange}/>
+                <button onClick={this.addProject}>Add Project</button>
             </form>
         );
     }
