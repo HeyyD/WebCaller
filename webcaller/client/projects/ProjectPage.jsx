@@ -15,7 +15,9 @@ export default class ProjectPage extends React.Component {
             <div>
                 <ProjectForm />
                 <ul>
-                
+                    {this.projects().map( (project)=>{
+                        return <ResolutionSingle key={project._id} projectName={"nimi"}/>
+                    })}                
                 </ul>
             </div>
         );
