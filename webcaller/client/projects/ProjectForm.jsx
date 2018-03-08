@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './styles/ProjectForm.css';
+
 export default class ProjectForm extends React.Component {
 
     constructor(props){
@@ -20,7 +22,7 @@ export default class ProjectForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    addProject(){
+    addProject(event){
         let project = {
             name: this.state.projectName,
             description: this.state.projectDescription,
@@ -28,16 +30,26 @@ export default class ProjectForm extends React.Component {
             agents: this.state.projectAgents
         };
         Meteor.call('addProject', project, (error) => console.log("error"));
+        event.preventDefault();
     }
 
     render(){
         return(
             <form>
-                <label>Project name:</label>
-                <input type="text" name="projectName" onChange={this.handleChange}/>
-                <label>Description:</label>
-                <textarea name="projectDescription" onChange={this.handleChange}/>
-                <button onClick={this.addProject}>Add Project</button>
+                <div>
+                    <div>
+                        <label>Project name:</label></div>
+                    <div>
+                        <input type="text" name="projectName" onChange={this.handleChange}/>
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                    </div>
+                    <div>
+                        <textarea className="desc" name="projectDescription" onChange={this.handleChange}/>
+                    </div>
+                    <button onClick={this.addProject}>Add Project</button>
+                </div>
             </form>
         );
     }
