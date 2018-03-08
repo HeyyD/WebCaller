@@ -24,8 +24,8 @@ export default class ProjectForm extends React.Component {
         let project = {
             name: this.state.projectName,
             description: this.state.projectDescription,
-            callLists: this.state.projectLists,
-            agents: this.state.agents
+            callLists: this.state.callLists,
+            agents: this.state.projectAgents
         };
         Meteor.call('addProject', project, (error) => console.log("error"));
     }
