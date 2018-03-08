@@ -8,6 +8,7 @@ export default class ProjectSingle extends React.Component {
     }
 
     render(){
+        console.log(this.props.projectName);
         return(<li>{this.props.projectName}</li>);
     }
 
