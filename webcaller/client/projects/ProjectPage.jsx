@@ -8,7 +8,12 @@ export default class ProjectPage extends React.Component {
 
     render(){
         return(
-            <ProjectForm />
+            <div>
+                <ProjectForm />
+                <ul>
+                
+                </ul>
+            </div>
         );
     }
 
