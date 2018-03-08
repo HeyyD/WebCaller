@@ -8,7 +8,7 @@ export default class ProjectSingle extends React.Component {
     }
 
     render(){
-        return(<p>Hello world!</p>);
+        return(<li>{this.props.projectName}</li>);
     }
 
 }
