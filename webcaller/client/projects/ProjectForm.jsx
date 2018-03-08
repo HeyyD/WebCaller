@@ -30,6 +30,8 @@ export default class ProjectForm extends React.Component {
             agents: this.state.projectAgents
         };
         Meteor.call('addProject', project, (error) => console.log("error"));
+        this.refs.projectName.value = "";
+        this.refs.projectDescription.value = "";
         event.preventDefault();
     }
 
@@ -40,13 +42,19 @@ export default class ProjectForm extends React.Component {
                     <div>
                         <label>Project name:</label></div>
                     <div>
-                        <input type="text" name="projectName" onChange={this.handleChange}/>
+                        <input type="text" 
+                            name="projectName" 
+                            ref="projectName" 
+                            onChange={this.handleChange}/>
                     </div>
                     <div>
                         <label>Description:</label>
                     </div>
                     <div>
-                        <textarea className="desc" name="projectDescription" onChange={this.handleChange}/>
+                        <textarea className="desc" 
+                            name="projectDescription" 
+                            ref="projectDescription"
+                            onChange={this.handleChange}/>
                     </div>
                     <button onClick={this.addProject}>Add Project</button>
                 </div>
