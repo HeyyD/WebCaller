@@ -22,7 +22,7 @@ FlowRouter.route('/projects', {
     }
 });
 
-FlowRouter.route('/resolutions/:id', {
+FlowRouter.route('/projects/:id', {
     action(params) {
         mount(MainLayout, {
             content: (<p>{params.id}</p>)
