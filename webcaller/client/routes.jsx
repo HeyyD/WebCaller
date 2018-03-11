@@ -21,3 +21,11 @@ FlowRouter.route('/projects', {
         })
     }
 });
+
+FlowRouter.route('/resolutions/:id', {
+    action(params) {
+        mount(MainLayout, {
+            content: (<p>{params.id}</p>)
+        })
+    }
+});
