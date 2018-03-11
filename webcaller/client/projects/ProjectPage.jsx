@@ -20,7 +20,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
                 <ProjectForm />
                 <ul className="projects">
                     {this.projects().map( (project)=>{
-                        return <ProjectSingle key={project._id} projectName={project.name}/>
+                        return <ProjectSingle key={project._id} project={project}/>
                     })}                
                 </ul>
             </div>
