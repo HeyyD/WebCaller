@@ -4,6 +4,7 @@ import ProjectForm from './ProjectForm.jsx';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ProjectSingle from './ProjectSingle.jsx';
 
+
 CallProjects = new Mongo.Collection("projects");
 
 export default class ProjectPage extends TrackerReact(React.Component) {

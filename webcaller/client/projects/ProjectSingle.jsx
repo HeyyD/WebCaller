@@ -8,7 +8,7 @@ export default class ProjectSingle extends React.Component {
     }
 
     render(){
-        return(<li>{this.props.projectName}</li>);
+        return(<li>{this.props.projectName}<button>X</button></li>);
     }
 
 }
