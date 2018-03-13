@@ -1,0 +1,1 @@
+CallProjects = new Mongo.Collection("projects");
