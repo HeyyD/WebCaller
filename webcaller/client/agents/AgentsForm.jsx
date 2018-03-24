@@ -7,6 +7,10 @@ export default class AgentsForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    addUser(event){
+        console.log('hello');
+    }
+
     render(){
         return(
             <form>
