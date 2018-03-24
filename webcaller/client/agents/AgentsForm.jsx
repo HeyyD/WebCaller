@@ -6,6 +6,8 @@ export default class AgentsForm extends React.Component {
     constructor(props){
         super(props);
         
+        this.handleChange = this.handleChange.bind(this);
+        this.addUser = this.addUser.bind(this);
     }
 
     handleChange(event){
