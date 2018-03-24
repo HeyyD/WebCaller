@@ -37,5 +37,8 @@ Meteor.methods({
             createdAt: Date(),
             user: Meteor.userId()
         });
-    }
+    },
+    insertUser(newUserData){
+        return Accounts.createUser(newUserData);
+      }
 });

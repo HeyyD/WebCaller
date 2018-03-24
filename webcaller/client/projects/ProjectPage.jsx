@@ -11,8 +11,10 @@ export default class ProjectPage extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
-        subscription: {
-            projects: Meteor.subscribe("userProjects");
+        this.state = {
+            subscription: {
+                projects: Meteor.subscribe("userProjects")
+            }
         }
     }
 
