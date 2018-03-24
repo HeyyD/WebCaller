@@ -12,8 +12,12 @@ export default class ProjectPage extends TrackerReact(React.Component) {
     constructor(props){
         super(props);
         subscription: {
-            resolutions: Meteor.subscribe("userProjects");
+            projects: Meteor.subscribe("userProjects");
         }
+    }
+
+    componentWillUnmount(){
+        this.state.subscription.projects.stop();
     }
 
     projects(){
