@@ -30,3 +30,10 @@ FlowRouter.route('/projects/:id', {
     }
 });
 
+FlowRouter.route('/agents', {
+    action(params) {
+        mount(MainLayout, {
+            content: (<p>Hello world!</p>)
+        })
+    }
+});
