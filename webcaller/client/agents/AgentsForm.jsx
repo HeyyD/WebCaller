@@ -30,7 +30,7 @@ export default class AgentsForm extends React.Component {
                         name="password" 
                         ref="password" 
                         onChange={this.handleChange}/>
-                    <button onClick={this.addProject}>Add Project</button>
+                    <button onClick={this.addProject}>Add Agent</button>
                 </div>
             </form>
         );
