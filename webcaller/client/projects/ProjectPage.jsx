@@ -9,6 +9,13 @@ CallProjects = new Mongo.Collection("projects");
 
 export default class ProjectPage extends TrackerReact(React.Component) {
 
+    constructor(props){
+        super(props);
+        subscription: {
+            resolutions: Meteor.subscribe("userProjects");
+        }
+    }
+
     projects(){
         return CallProjects.find().fetch();
     }
