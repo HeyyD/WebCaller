@@ -8,6 +8,7 @@ export default class AgentsForm extends React.Component {
     }
 
     addUser(event){
+        event.preventDefault();
         console.log('hello');
     }
 
@@ -30,7 +31,7 @@ export default class AgentsForm extends React.Component {
                         name="password" 
                         ref="password" 
                         onChange={this.handleChange}/>
-                    <button onClick={this.addProject}>Add Agent</button>
+                    <button onClick={this.addUser}>Add Agent</button>
                 </div>
             </form>
         );
