@@ -37,10 +37,12 @@ export default class AgentsForm extends React.Component {
                     <div>
                         <label>Password:</label>
                     </div>
+                    <div>
                         <input type="text" 
                         name="password" 
                         ref="password" 
                         onChange={this.handleChange}/>
+                    </div>
                     <button onClick={this.addUser}>Add Agent</button>
                 </div>
             </form>
