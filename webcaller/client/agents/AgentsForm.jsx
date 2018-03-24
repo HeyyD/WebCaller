@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 
 export default class AgentsForm extends React.Component {
 
+    constructor(props){
+        super(props);
+        
+    }
+
     handleChange(event){
         this.setState({[event.target.name]: event.target.value});
     }
