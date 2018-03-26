@@ -34,7 +34,6 @@ export default class AgentsForm extends React.Component {
     }
 
     render(){
-        console.log(Meteor.users.find().fetch());
         return(
             <form>
                 <div>
