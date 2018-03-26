@@ -19,7 +19,17 @@ export default class AgentsForm extends React.Component {
 
     addUser(event){
         event.preventDefault();
-        console.log('hello');
+        let userData = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        Meteor.call('insertAgent', userData);
+        this.refs.username.value = "";
+        this.refs.password.value = "";
+        this.setState({
+            username: "",
+            password: ""
+        })
     }
 
     render(){
@@ -38,7 +48,7 @@ export default class AgentsForm extends React.Component {
                         <label>Password:</label>
                     </div>
                     <div>
-                        <input type="text" 
+                        <input type="password" 
                         name="password" 
                         ref="password" 
                         onChange={this.handleChange}/>

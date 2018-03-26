@@ -29,6 +29,9 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
+        }
         CallProjects.insert({
             name: project.name,
             description: project.description,
@@ -38,7 +41,15 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
-    insertUser(newUserData){
-        return Accounts.createUser(newUserData);
-      }
+    insertAgent(newUserData){
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new agents!');
+        }
+
+        let user = Accounts.createUser(newUserData);
+        Roles.addUsersToRoles(user, ['agent', Meteor.userId()]);
+        Roles.removeUsersFromRoles(user, ['admin']);
+        return user;
+    }
 });
