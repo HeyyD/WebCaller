@@ -5,9 +5,13 @@ export default class AgentsForm extends React.Component {
 
     constructor(props){
         super(props);
+
         this.state = ({
             username: "",
             password: "",
+            subscription: {
+                agents: Meteor.subscribe("subUsers")
+            }
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
@@ -33,7 +37,7 @@ export default class AgentsForm extends React.Component {
     }
 
     render(){
-        console.log(Roles.getUsersInRole('admin'));
+        console.log(Meteor.users.find().fetch());
         return(
             <form>
                 <div>
