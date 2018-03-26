@@ -9,5 +9,4 @@ Meteor.startup(() => {
     user.roles = ['admin'];
     return user;
   });
-  
 });

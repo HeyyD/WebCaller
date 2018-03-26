@@ -33,6 +33,7 @@ export default class AgentsForm extends React.Component {
     }
 
     render(){
+        console.log(Roles.getUsersInRole('admin'));
         return(
             <form>
                 <div>
