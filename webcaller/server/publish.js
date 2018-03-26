@@ -5,5 +5,5 @@ Meteor.publish("userProjects", function(){
 });
 
 Meteor.publish("subUsers", function(){
-
+    return Meteor.users.find({}, {fields: {_id: 1, username: 1}});
 });
