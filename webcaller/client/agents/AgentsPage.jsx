@@ -16,6 +16,10 @@ export default class AgentsPage extends TrackerReact(React.Component) {
         });
     }
 
+    componentWillUnmount(){
+        this.state.subscription.agents.stop();
+    }
+
     render(){
         return(
             <div>
