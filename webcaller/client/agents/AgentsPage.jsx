@@ -7,6 +7,10 @@ import AgentsForm from './AgentsForm.jsx';
 export default class AgentsPage extends TrackerReact(React.Component) {
 
 
+    constructor(props){
+        super(props);
+    }
+
     render(){
         return(
             <div>
