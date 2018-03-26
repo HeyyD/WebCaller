@@ -9,9 +9,6 @@ export default class AgentsForm extends React.Component {
         this.state = ({
             username: "",
             password: "",
-            subscription: {
-                agents: Meteor.subscribe("subUsers")
-            }
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
