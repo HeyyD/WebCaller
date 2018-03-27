@@ -8,7 +8,7 @@ export default class AgentSingle extends React.Component {
     }
 
     render(){
-        return(<li>Hello</li>);
+        return(<li>{this.props.agent.username}</li>);
     }
 
 }
