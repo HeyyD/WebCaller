@@ -24,5 +24,43 @@ Meteor.methods({
           from: '+358248092145'
         })
         .then(call => process.stdout.write(call.sid));       
+    },
+    addProject(project){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
+        }
+        CallProjects.insert({
+            name: project.name,
+            description: project.description,
+            callLists: project.callLists,
+            agents: project.agents,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
+    },
+    insertAgent(newUserData){
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new agents!');
+        }
+
+        let user = Accounts.createUser(newUserData);
+        Roles.addUsersToRoles(user, ['agent', Meteor.userId()]);
+        Roles.removeUsersFromRoles(user, ['admin']);
+        return user;
+    },
+    deleteAgent(agentID){
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can delete agents!');
+        }
+
+        if(!Roles.userIsInRole(agentID, ['agent', Meteor.userId()])){
+            throw new Meteor.Error('not enough rights', 'You can only delete your own agents!')
+        }
+
+        Meteor.users.remove(agentID);
     }
 });
