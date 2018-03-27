@@ -20,6 +20,10 @@ export default class AgentsPage extends TrackerReact(React.Component) {
         this.state.subscription.agents.stop();
     }
 
+    subUsers(){
+
+    }
+
     render(){
         return(
             <div>
