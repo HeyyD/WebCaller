@@ -53,6 +53,9 @@ Meteor.methods({
         return user;
     },
     deleteAgent(agentID){
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can delete agents!');
+        }
         Meteor.users.remove(agentID);
     }
 });
