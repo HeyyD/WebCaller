@@ -5,6 +5,7 @@ export default class AgentSingle extends React.Component {
 
     constructor(props){
         super(props);
+        this.deleteAgent = this.deleteAgent.bind(this);
     }
 
     deleteAgent(){
