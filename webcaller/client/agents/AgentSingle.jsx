@@ -8,11 +8,12 @@ export default class AgentSingle extends React.Component {
     }
 
     deleteAgent(){
-        
+        Meteor.call('deleteAgent', this.props.agent._id);
     }
 
     render(){
-        return(<li>{this.props.agent.username}<button onclick={this.deleteAgent}>delete</button></li>);
+        console.log(this.props.agent);
+        return(<li>{this.props.agent.username}<button onClick={this.deleteAgent}>delete</button></li>);
     }
 
 }
