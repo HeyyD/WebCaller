@@ -5,6 +5,5 @@ Meteor.publish("userProjects", function(){
 });
 
 Meteor.publish("subUsers", function(){
-    console.log(this.userId);
     return Meteor.users.find({roles: this.userId}, {fields: {_id: 1, username: 1, roles: 1}});
 });
