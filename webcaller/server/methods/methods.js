@@ -53,6 +53,6 @@ Meteor.methods({
         return user;
     },
     deleteAgent(agentID){
-
+        Meteor.users.remove(agentID);
     }
 });
