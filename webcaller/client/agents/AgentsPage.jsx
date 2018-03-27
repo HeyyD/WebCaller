@@ -31,7 +31,8 @@ export default class AgentsPage extends TrackerReact(React.Component) {
                 <AgentsForm />
                 <ul>
                     {this.subUsers().map((agent) => {
-                        return <AgentSingle />;
+                        if(agent._id != Meteor.userId())
+                            return <AgentSingle key={agent._id} agent={agent} />;
                     })}
                 </ul>
             </div>
