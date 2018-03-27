@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import AgentsForm from './AgentsForm.jsx';
+import AgentSingle from './AgentSingle.jsx';
 
 
 export default class AgentsPage extends TrackerReact(React.Component) {
@@ -25,10 +26,14 @@ export default class AgentsPage extends TrackerReact(React.Component) {
     }
 
     render(){
-        console.log(this.subUsers());
         return(
             <div>
                 <AgentsForm />
+                <ul>
+                    {this.subUsers().map((agent) => {
+                        return <AgentSingle />;
+                    })}
+                </ul>
             </div>
         );
     }
