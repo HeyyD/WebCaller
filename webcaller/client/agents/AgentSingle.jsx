@@ -7,8 +7,12 @@ export default class AgentSingle extends React.Component {
         super(props);
     }
 
+    deleteAgent(){
+        
+    }
+
     render(){
-        return(<li>{this.props.agent.username}</li>);
+        return(<li>{this.props.agent.username}<button onclick={this.deleteAgent}>delete</button></li>);
     }
 
 }
