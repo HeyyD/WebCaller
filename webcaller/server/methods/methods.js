@@ -42,7 +42,20 @@ Meteor.methods({
         });
     },
     modifyProject(project) {
-        
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can modify projects!');
+        }
+
+        CallProjects.update({_id: project._id}, {
+            $set: {description: project.description}
+        })
+
+        CallProjects.update({_id: project._id}, {
+            $set: {name: project.name}
+        })
     },
     insertAgent(newUserData){
 
