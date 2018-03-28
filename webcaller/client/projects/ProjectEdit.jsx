@@ -6,10 +6,16 @@ export default class ProjectEdit extends React.Component {
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.editProject = this.editProject.bind(this);
     }
 
     handleChange(event){
         this.setState({[event.target.name]: event.target.value});
+    }
+
+    editProject(event) {
+        event.preventDefault();
+        console.log(this.props.id);
     }
 
     render(){
@@ -33,7 +39,7 @@ export default class ProjectEdit extends React.Component {
                             ref="projectDescription"
                             onChange={this.handleChange}/>
                     </div>
-                    <button onClick={this.addProject}>Add Project</button>
+                    <button onClick={this.editProject}>Save changes</button>
                 </div>
             </form>
         );

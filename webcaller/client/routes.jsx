@@ -27,7 +27,7 @@ FlowRouter.route('/projects', {
 FlowRouter.route('/projects/:id', {
     action(params) {
         mount(MainLayout, {
-            content: (<ProjectEdit />)
+            content: (<ProjectEdit id={params.id}/>)
         })
     }
 });
