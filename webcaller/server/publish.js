@@ -1,4 +1,5 @@
 CallProjects = new Mongo.Collection("projects");
+CallLists = new Mongo.Collection("calllists");
 
 Meteor.publish("userProjects", function(){
     return CallProjects.find({user: this.userId});
