@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import CallListForm from './CallListForm.jsx';
 
 CallLists = new Mongo.Collection("calllists");
 
-export default class CallListPage extends React.Component {
+export default class CallListPage extends TrackerReact(React.Component) {
   
   constructor(props){
     super(props);
@@ -24,7 +25,7 @@ export default class CallListPage extends React.Component {
     }
 
     render(){
-        //console.log(this.lists())
+        console.log(this.lists())
         return(
             <div>
                 <CallListForm />
