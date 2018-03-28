@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CallListForm from './CallListForm.jsx';
 
 CallLists = new Mongo.Collection("calllists");
 
@@ -7,16 +8,16 @@ export default class CallListPage extends React.Component {
   
   constructor(props){
     super(props);
-        /*this.state = {
+        this.state = {
             subscription: {
-                projects: Meteor.subscribe("userProjects")
+                lists: Meteor.subscribe("callLists")
             }
-        }*/
+        }
     }
 
-    /*componentWillUnmount(){
-        this.state.subscription.projects.stop();
-    }*/
+    componentWillUnmount(){
+        this.state.subscription.lists.stop();
+    }
 
     lists(){
         return CallLists.find().fetch();
