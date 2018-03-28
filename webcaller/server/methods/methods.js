@@ -58,12 +58,25 @@ Meteor.methods({
         }
 
         if(!Roles.userIsInRole(agentID, ['agent', Meteor.userId()])){
-            throw new Meteor.Error('not enough rights', 'You can only delete your own agents!')
+            throw new Meteor.Error('not enough rights', 'You can only delete your own agents!');
         }
 
         Meteor.users.remove(agentID);
     },
     addCallList(callList){
-        console.log("helsingin sanomat")
+        console.log("helsingin sanomat");
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
+        }
+        CallLists.insert({
+            name: list.name,
+            description: list.description,
+            contacts: list.contacts,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
     }
 });
