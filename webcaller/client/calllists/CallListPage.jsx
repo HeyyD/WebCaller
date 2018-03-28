@@ -23,7 +23,7 @@ export default class CallListPage extends React.Component {
     }
 
     render(){
-        console.log(this.lists())
+        //console.log(this.lists())
         return(
             <div>
                 <CallListForm />
