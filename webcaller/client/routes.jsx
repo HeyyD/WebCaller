@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 import Contacts from './contacts/Contacts.jsx';
 import ProjectPage from './projects/ProjectPage.jsx';
 import AgentsPage from './agents/AgentsPage.jsx';
-import CallListPage from '/calllists/CallListPage.jsx';
+import CallListPage from './calllists/CallListPage.jsx';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
