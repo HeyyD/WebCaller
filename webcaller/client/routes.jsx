@@ -47,3 +47,11 @@ FlowRouter.route('/calllists', {
         })
     }
 });
+
+FlowRouter.route('/calllists/:id', {
+    action(params) {
+        mount(MainLayout, {
+            content: (<p>{params.id}</p>)
+        })
+    }
+});
