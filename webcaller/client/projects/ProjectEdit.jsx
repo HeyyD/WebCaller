@@ -47,6 +47,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
         Meteor.call('modifyProject', p);
 
+        FlowRouter.go('projects');
+
         event.preventDefault();
     }
 
