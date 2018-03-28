@@ -23,6 +23,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         let project = CallProjects.find({_id: this.props.id}).fetch()[0];
 
         this.setState({
+            _id: project._id,
             projectName: project.name,
             projectDescription: project.description
         })
@@ -33,8 +34,16 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     }
 
     editProject(event) {
+
+        let p = {
+            _id : this.state._id,
+            name: this.state.projectName,
+            description : this.state.projectDescription
+        };
+
+        Meteor.call('modifyProject', p);
+
         event.preventDefault();
-        console.log(this.props.id);
     }
 
     render(){
