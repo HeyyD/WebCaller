@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import CallListForm from './CallListForm.jsx';
+import CallListSingle from './CallListSingle.jsx';
 
 CallLists = new Mongo.Collection("calllists");
 
