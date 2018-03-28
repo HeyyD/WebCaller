@@ -57,6 +57,11 @@ Meteor.methods({
             $set: {name: project.name}
         })
     },
+
+    deleteProject(projectId) {
+        
+    },
+
     insertAgent(newUserData){
 
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
