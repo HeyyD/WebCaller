@@ -4,6 +4,7 @@ import Contacts from './contacts/Contacts.jsx';
 import ProjectPage from './projects/ProjectPage.jsx';
 import AgentsPage from './agents/AgentsPage.jsx';
 import ProjectEdit from './projects/ProjectEdit';
+import CallListPage from '/calllists/CallListPage.jsx';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
@@ -44,7 +45,7 @@ FlowRouter.route('/agents', {
 FlowRouter.route('/calllists', {
     action(params) {
         mount(MainLayout, {
-            content: (<p>Hello World</p>)
+            content: (<CallListPage />)
         })
     }
 });
