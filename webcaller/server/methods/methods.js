@@ -59,7 +59,7 @@ Meteor.methods({
     },
 
     deleteProject(projectId) {
-        
+        CallProjects.remove({_id: projectId});
     },
 
     insertAgent(newUserData){
