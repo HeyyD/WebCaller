@@ -3,8 +3,13 @@ import {mount} from 'react-mounter';
 import Contacts from './contacts/Contacts.jsx';
 import ProjectPage from './projects/ProjectPage.jsx';
 import AgentsPage from './agents/AgentsPage.jsx';
+<<<<<<< HEAD
 import ProjectEdit from './projects/ProjectEdit';
 import CallListPage from '/calllists/CallListPage.jsx';
+=======
+import CallListPage from './calllists/CallListPage.jsx';
+import CallListContents from './calllists/CallListContents.jsx';
+>>>>>>> Modify routes.jsx modify /calllists/:id route
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
@@ -53,7 +58,7 @@ FlowRouter.route('/calllists', {
 FlowRouter.route('/calllists/:id', {
     action(params) {
         mount(MainLayout, {
-            content: (<p>{params.id}</p>)
+            content: (<CallListContents id={params.id}/>)
         })
     }
 });
