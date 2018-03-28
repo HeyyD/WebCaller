@@ -64,7 +64,6 @@ Meteor.methods({
         Meteor.users.remove(agentID);
     },
     addCallList(callList){
-        console.log("helsingin sanomat");
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
@@ -72,9 +71,9 @@ Meteor.methods({
             throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
         }
         CallLists.insert({
-            name: list.name,
-            description: list.description,
-            contacts: list.contacts,
+            name: callList.name,
+            description: callList.description,
+            contacts: callList.contacts,
             createdAt: Date(),
             user: Meteor.userId()
         });
