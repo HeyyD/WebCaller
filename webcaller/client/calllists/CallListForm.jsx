@@ -8,7 +8,17 @@ export default class CallListForm extends React.Component {
         this.state = ({
             listName: "",
             listDescription: "",
-            contacts: []
+            contacts: [{
+                name: "banaani-tom",
+                customerStatus: "asiakas",
+                region: "suomi",
+                city: "tampere",
+                address: "hervanta",
+                industry: "tiko",
+                telephone: "123",
+                email: "tom@tom.tom",
+                lastAction: "23rd may 2017"
+            }]
         });
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,8 +40,8 @@ export default class CallListForm extends React.Component {
         this.refs.listDescription.value = "";
         this.setState({
             listName: "",
-            listDescription: "",
-            contacts: []
+            listDescription: ""
+            //contacts: []
         })
         event.preventDefault();
     }
