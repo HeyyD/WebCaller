@@ -41,6 +41,9 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
+    modifyProject(project) {
+        
+    },
     insertAgent(newUserData){
 
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
