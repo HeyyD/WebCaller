@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import ContactSingle from './ContactSingle.jsx';
 
 export default class CallListContents extends TrackerReact(React.Component) {
 
@@ -27,8 +28,8 @@ export default class CallListContents extends TrackerReact(React.Component) {
         return(
             <div>
                 <ul>
-                    {this.callLists().map( (list)=>{
-                        return <p>Hello World</p>;
+                    {this.callLists()[0].contacts.map( (contact)=>{
+                        return <ContactSingle key={contact._id} contact={contact}/>
                     })}                
                 </ul>
             </div>
