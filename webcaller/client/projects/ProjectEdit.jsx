@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export default class ProjectEdit extends React.Component {
+export default class ProjectEdit extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
@@ -10,7 +11,7 @@ export default class ProjectEdit extends React.Component {
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects")
-            }
+            },
         }
     }
 
@@ -23,11 +24,11 @@ export default class ProjectEdit extends React.Component {
         console.log(this.props.id);
     }
 
-    projects(){
-        return CallProjects.find().fetch();
-    }
-
     render(){
+
+        let project = CallProjects.find({_id: this.props.id}).fetch();
+        console.log(project);
+
         return(
             <form>
                 <div>
