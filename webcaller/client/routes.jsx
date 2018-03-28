@@ -40,3 +40,11 @@ FlowRouter.route('/agents', {
         })
     }
 });
+
+FlowRouter.route('/calllists', {
+    action(params) {
+        mount(MainLayout, {
+            content: (<p>Hello World</p>)
+        })
+    }
+});
