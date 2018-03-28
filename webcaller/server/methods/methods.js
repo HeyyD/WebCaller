@@ -86,5 +86,8 @@ Meteor.methods({
         }
 
         Meteor.users.remove(agentID);
+    },
+    addCallList(callList){
+        console.log("helsingin sanomat")
     }
 });
