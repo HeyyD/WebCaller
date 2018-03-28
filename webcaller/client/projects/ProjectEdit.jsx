@@ -7,6 +7,11 @@ export default class ProjectEdit extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.editProject = this.editProject.bind(this);
+        this.state = {
+            subscription: {
+                projects: Meteor.subscribe("userProjects")
+            }
+        }
     }
 
     handleChange(event){
@@ -16,6 +21,10 @@ export default class ProjectEdit extends React.Component {
     editProject(event) {
         event.preventDefault();
         console.log(this.props.id);
+    }
+
+    projects(){
+        return CallProjects.find().fetch();
     }
 
     render(){
