@@ -3,6 +3,7 @@ import {mount} from 'react-mounter';
 import Contacts from './contacts/Contacts.jsx';
 import ProjectPage from './projects/ProjectPage.jsx';
 import AgentsPage from './agents/AgentsPage.jsx';
+import ProjectEdit from './projects/ProjectEdit';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
@@ -16,6 +17,7 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/projects', {
+    name: 'projects',
     action(){
         mount(MainLayout, {
             content: (<ProjectPage />)
@@ -26,7 +28,7 @@ FlowRouter.route('/projects', {
 FlowRouter.route('/projects/:id', {
     action(params) {
         mount(MainLayout, {
-            content: (<p>{params.id}</p>)
+            content: (<ProjectEdit id={params.id}/>)
         })
     }
 });
