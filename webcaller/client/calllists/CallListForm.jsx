@@ -3,6 +3,20 @@ import ReactDOM from 'react-dom';
 
 export default class CallListForm extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = ({
+            projectName: "",
+            projectDescription: "",
+            callLists: [],
+            projectAgents: []
+        });
+
+        this.handleChange = this.handleChange.bind(this);
+        this.addProject = this.addProject.bind(this);
+    }
+
+   
     
     render(){
         return(
