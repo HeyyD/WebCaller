@@ -9,7 +9,7 @@ export default class ProjectSingle extends React.Component {
     }
 
     deleteProject() {
-
+        Meteor.call('deleteProject', project._id);      
     }
 
     render(){
