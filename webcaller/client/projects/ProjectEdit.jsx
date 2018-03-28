@@ -33,6 +33,10 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    componentWillUnmount(){
+        this.state.subscription.projects.stop();
+    }
+
     editProject(event) {
 
         let p = {
