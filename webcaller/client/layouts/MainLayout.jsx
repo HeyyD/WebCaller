@@ -9,6 +9,7 @@ export const MainLayout = ({content}) => (
             <nav>
                 <a href="/agents">Agents</a>
                 <a href="/projects">Projects</a>
+                <a href="/calllists">Call lists</a>
                 <a href="/">User</a>
                 <AccountsUI />
             </nav>
