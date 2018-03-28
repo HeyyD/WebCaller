@@ -16,7 +16,9 @@ export default class CallListForm extends React.Component {
         this.addProject = this.addProject.bind(this);
     }
 
-   
+    handleChange(event){
+        this.setState({[event.target.name]: event.target.value});
+    }   
     
     render(){
         return(
