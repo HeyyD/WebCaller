@@ -7,8 +7,25 @@ export default class ContactSingle extends React.Component {
         super(props);
     }
 
+    readContact(){
+        let keys = [];
+        for (let [key, value] of Object.entries(this.props.contact)) {
+            keys.push(<tr>
+                        <td>{key}:</td> 
+                        <td>{value}</td>
+                    </tr>);
+        }
+        return keys;
+    }
+
     render(){
-        return(<li><a href={"calllists/"+this.props.contact._id}>{this.props.contact.name}</a><button>X</button></li>);
+        let keys = this.readContact();
+
+        return(
+            <div>
+                {keys}
+            </div>
+        );
     }
 
 }
