@@ -15,6 +15,10 @@
   font-family: Ubuntu;
 }
 
+.Contact-table tr:hover {
+    background: #d2d2d2;
+}
+
 .Contact-table a:hover {
   color: white;
   background: #584164;
