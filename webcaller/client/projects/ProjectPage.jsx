@@ -52,7 +52,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         let muuttuja = this.projects();
         return(
             <div>
-                {this.renderContent}
+                {this.renderContent()}
             </div>
         );
     }
