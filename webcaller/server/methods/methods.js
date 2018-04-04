@@ -9,7 +9,10 @@ var client = new twilio(accountSid, authToken);
 
 
 Meteor.methods({
-    makeCall(number){        
+    makeCall(number){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
         Picker.route('/call', function(params, req, res, next) {
             const twiml = new VoiceResponse();
             const dial = twiml.dial();
