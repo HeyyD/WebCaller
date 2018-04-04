@@ -25,12 +25,9 @@ export default class AgentsPage extends TrackerReact(React.Component) {
         return Meteor.users.find().fetch();
     }
     renderContent(){
-        
-    }
-
-    render(){
-        return(
-            <div>
+        if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+            return(
+                <div>
                 <AgentsForm />
                 <ul className="agentsList">
                     {this.subUsers().map((agent) => {
@@ -39,6 +36,19 @@ export default class AgentsPage extends TrackerReact(React.Component) {
                     })}
                 </ul>
             </div>
+            );
+        }else {
+            return(
+                <div>
+                    <p> Not authorized! </p>
+                </div> 
+            );
+        }
+    }
+
+    render(){
+        return(
+            
         );
     }
 
