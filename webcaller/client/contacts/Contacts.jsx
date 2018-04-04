@@ -36,20 +36,23 @@ class Contacts extends Component {
     if(this.state.addContactView)
       return (
           <div>
-            <form id="addContact">
-              <div>
-                <label>Phone:</label>
-                <input type="number" name="phone" onChange={this.handleChange}/>
-              </div>
-              <div>
-                <label>Name:</label>
-                <input type="text" name="name" onChange={this.handleChange}/>
-              </div>
-                <label>Company:</label>
-                <input type="text" name="company" onChange={this.handleChange}/>
-            </form>
-
-            <div id="lastRow">
+            <table className="Add-contact">
+              <tbody>
+                <tr>
+                  <td>Phone:</td>
+                  <td><input type="number" name="phone" onChange={this.handleChange}/></td>
+                </tr>
+                <tr>
+                  <td>Name:</td>
+                  <td><input type="text" name="name" onChange={this.handleChange}/></td>
+                </tr>
+                <tr>
+                  <td>Company:</td>
+                  <td><input type="text" name="company" onChange={this.handleChange}/></td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="Last-row">
               <button onClick={this.addContact}>Add Contact</button>
               <button onClick={this.changeAddContactView}>Cancel</button>
             </div>
