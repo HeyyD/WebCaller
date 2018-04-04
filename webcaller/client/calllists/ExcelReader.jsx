@@ -9,7 +9,7 @@ export default class ExcelReader extends React.Component {
     }
 
     readFile(){
-        let file = '../../banaani.xlsx';
+        
         var name = file.name;
         const reader = new FileReader();
         reader.onload = (evt) => { //evt = on_file_select event
@@ -24,10 +24,11 @@ export default class ExcelReader extends React.Component {
             /* Update state */
             console.log("Data>>>"+data);
         };
+        console.log('name = ' + name);
         console.log(reader.readAsBinaryString(file));
     }
 
     render(){
-        return <div>{this.readFile()}</div>;
+        return <tr><td>{this.readFile()}</td></tr>;
     }
 }
