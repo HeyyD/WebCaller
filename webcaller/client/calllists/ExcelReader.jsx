@@ -25,5 +25,9 @@ export default class ExcelReader extends React.Component {
             console.log("Data>>>"+data);
         };
         console.log(reader.readAsBinaryString(file));
-    } 
+    }
+
+    render(){
+        return <div>{this.readFile()}</div>;
+    }
 }
