@@ -22,7 +22,7 @@ class ContactList extends Component {
         <td>{contactList[i].phone}</td>
         <td>{contactList[i].name}</td>
         <td>{contactList[i].company}</td>
-        <td><button onClick={ () => this.makeCall(contactList[i].phone)}>Call</button></td>
+        <td className="Contact-table-call"><a href="" onClick={ () => this.makeCall(contactList[i].phone)}>Call</a></td>
       </tr>);
     }
     return tableRows;

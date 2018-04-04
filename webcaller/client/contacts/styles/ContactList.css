@@ -1,0 +1,21 @@
+
+.Contact-table td {
+  border: #584164 1px solid;
+  text-align: center;
+  min-width: 150px;
+  height: 40px;
+}
+
+.Contact-table a {
+  display: block;
+  text-decoration: none;
+  margin: auto;
+  height: 100%;
+  line-height: 40px;
+  font-family: Ubuntu;
+}
+
+.Contact-table a:hover {
+  color: white;
+  background: #584164;
+}
