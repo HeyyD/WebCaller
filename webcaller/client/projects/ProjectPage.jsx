@@ -26,16 +26,33 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         return CallProjects.find().fetch();
     }
 
+    renderContent(){
+        if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+            return(
+                <div>
+                    <ProjectForm />
+                    <ul className="projects">
+                        {this.projects().map( (project)=>{
+                            return <ProjectSingle key={project._id} project={project}/>
+                        })}                
+                    </ul>
+                </div>
+            );
+        }else {
+            return(
+                <div>
+                    <p> Not authorized! </p>
+                </div>
+            );
+        }
+    }
+
     render(){
         console.log(this.projects())
+        let muuttuja = this.projects();
         return(
             <div>
-                <ProjectForm />
-                <ul className="projects">
-                    {this.projects().map( (project)=>{
-                        return <ProjectSingle key={project._id} project={project}/>
-                    })}                
-                </ul>
+                {this.renderContent()}
             </div>
         );
     }

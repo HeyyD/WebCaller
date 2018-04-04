@@ -9,6 +9,12 @@ export default class AccountsUI extends Component{
         Accounts.ui.config({
             passwordSignupFields: 'USERNAME_ONLY',
         });
+        Accounts.onLogin(function(){
+            FlowRouter.reload();
+        });
+        Accounts.onLogout(function(){
+            FlowRouter.reload();
+        });
     }
 
     componentDidMount(){
