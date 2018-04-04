@@ -31,7 +31,7 @@ class ContactList extends Component {
   render(){
     return (
         <div>
-          <table>
+          <table className="Contact-table">
             <thead>
             <tr>
               <th>Phone</th>
