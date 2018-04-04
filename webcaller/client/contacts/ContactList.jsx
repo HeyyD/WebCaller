@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles/ContactList.css';
 
 class ContactList extends Component {
   constructor(props){
@@ -30,7 +31,7 @@ class ContactList extends Component {
   render(){
     return (
         <div>
-          <table>
+          <table className="Contact-table">
             <thead>
             <tr>
               <th>Phone</th>
@@ -39,7 +40,7 @@ class ContactList extends Component {
             </tr>
             </thead>
             <tbody>
-            {this.createContactList()}
+              {this.createContactList()}
             </tbody>
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
