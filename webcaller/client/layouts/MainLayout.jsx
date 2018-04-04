@@ -1,13 +1,14 @@
 import React from 'react';
 import AccountsUI from '../../AccountsUI.jsx';
 
-function renderAdminNavi(){
+function AdminNavi(){
+    console.log(Meteor.userId());
     if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
         return(
-            <div>
-            <a href="/agents">Agents</a>
-            <a href="/projects">Projects</a>
-            </div>
+            <label className="adminNavi">
+                <a href="/agents">Agents</a>
+                <a href="/projects">Projects</a>
+            </label>
         );
     }else{
         return <div></div>;
@@ -19,7 +20,7 @@ export const MainLayout = ({content}) => (
     <header>
             <h2>WebCaller</h2>
             <nav>
-                
+                <AdminNavi />               
                 <a href="/">User</a>
                 <AccountsUI />
             </nav>
