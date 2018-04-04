@@ -1,15 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export default class ProjectEdit extends React.Component {
+export default class ProjectEdit extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.editProject = this.editProject.bind(this);
+        this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+        this.state = {
+            subscription: {
+                projects: Meteor.subscribe("userProjects", this.onSubscriptionReady)
+            },
+            projectName: '',
+            projectDescription: ''
+        }
+    }
+
+    onSubscriptionReady(){
+
+        let project = CallProjects.find({_id: this.props.id}).fetch()[0];
+
+        this.setState({
+            _id: project._id,
+            projectName: project.name,
+            projectDescription: project.description
+        })
     }
 
     handleChange(event){
         this.setState({[event.target.name]: event.target.value});
+    }
+
+    componentWillUnmount(){
+        this.state.subscription.projects.stop();
+    }
+
+    editProject(event) {
+
+        let p = {
+            _id : this.state._id,
+            name: this.state.projectName,
+            description : this.state.projectDescription
+        };
+
+        Meteor.call('modifyProject', p);
+
+        FlowRouter.go('projects');
+
+        event.preventDefault();
     }
 
     render(){
@@ -22,6 +62,7 @@ export default class ProjectEdit extends React.Component {
                         <input type="text" 
                             name="projectName" 
                             ref="projectName" 
+                            value={this.state.projectName}
                             onChange={this.handleChange}/>
                     </div>
                     <div>
@@ -31,9 +72,10 @@ export default class ProjectEdit extends React.Component {
                         <textarea className="desc" 
                             name="projectDescription" 
                             ref="projectDescription"
+                            value={this.state.projectDescription}
                             onChange={this.handleChange}/>
                     </div>
-                    <button onClick={this.addProject}>Add Project</button>
+                    <button onClick={this.editProject}>Save changes</button>
                 </div>
             </form>
         );
