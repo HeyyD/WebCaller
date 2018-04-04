@@ -48,7 +48,9 @@ export default class AgentsPage extends TrackerReact(React.Component) {
 
     render(){
         return(
-            
+            <div>
+                {this.renderContent()}
+            </div>
         );
     }
 
