@@ -24,6 +24,9 @@ export default class AgentsPage extends TrackerReact(React.Component) {
     subUsers(){
         return Meteor.users.find().fetch();
     }
+    renderContent(){
+        
+    }
 
     render(){
         return(
