@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import AgentsForm from './AgentsForm.jsx';
 import AgentSingle from './AgentSingle.jsx';
-
+import './styles/agentStyles.css';
 
 export default class AgentsPage extends TrackerReact(React.Component) {
 
