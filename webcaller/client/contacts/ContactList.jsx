@@ -31,7 +31,7 @@ class ContactList extends Component {
   render(){
     return (
         <div>
-          <table className="Contact-table">
+          <table>
             <thead>
             <tr>
               <th>Phone</th>
@@ -39,7 +39,7 @@ class ContactList extends Component {
               <th>Company</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody className="Contact-table">
               {this.createContactList()}
             </tbody>
           </table>
