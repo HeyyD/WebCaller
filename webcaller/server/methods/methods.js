@@ -77,5 +77,8 @@ Meteor.methods({
             createdAt: Date(),
             user: Meteor.userId()
         });
+    },
+    readExcelFile(excelFile){
+        
     }
 });
