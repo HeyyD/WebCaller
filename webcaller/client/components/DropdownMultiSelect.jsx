@@ -10,7 +10,8 @@ class DropdownMultiSelect extends Component {
     this.state = {
       selected: [],
       unselected: [],
-      options: []
+      options: [],
+      tags: []
     }
   }
 
@@ -42,12 +43,27 @@ class DropdownMultiSelect extends Component {
     event.target.value = "default";
 
     this.updateMenu(this.state.unselected);
+    this.updateTags(this.state.selected);
+  }
+
+  updateTags(array) {
+    let temp = [];
+    for(o of array) {
+      temp.push(<button>{o}</button>);
+    }
+
+    this.setState({
+      tags: temp
+    })
   }
 
   render() {
     return(
       <label>
         <h5>{this.props.title}</h5>
+        <div>
+          {this.state.tags}
+        </div>
         <div>
           <select onChange={this.itemSelected}>
             <option disabled selected value="default"> -- select an option -- </option>
