@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import fs from 'fs';
 
 export default class ExcelReader extends React.Component {
 
@@ -8,14 +9,10 @@ export default class ExcelReader extends React.Component {
     }
 
     readFile(){
-        let objectData;
-        convertExcel = require('excel-as-json').processFile;
-        convertExcel('../../numbers.xlsx', null, null, (error, data) => {
-            if(error) {
-                console.log('error');
-            }else{
-                objectData = data;
-            }
-        });
+        
+    }
+
+    render(){
+        return <tr><td>{this.readFile()}</td></tr>;
     }
 }
