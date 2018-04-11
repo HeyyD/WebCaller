@@ -74,7 +74,7 @@ class DropdownMultiSelect extends Component {
     return(
       <label>
         <h4>{this.props.title}</h4>
-        <div>
+        <div className="Dropdown-tags">
           {this.state.tags}
         </div>
         <div>
