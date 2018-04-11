@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Select from 'react-select';
 
 export default class AgentsForm extends React.Component {
 
@@ -54,6 +55,7 @@ export default class AgentsForm extends React.Component {
                         ref="password" 
                         onChange={this.handleChange}/>
                     </div>
+                    <label></label>
                     <button onClick={this.addUser}>Add Agent</button>
                 </div>
             </form>
