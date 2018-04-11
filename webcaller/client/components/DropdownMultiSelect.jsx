@@ -33,10 +33,14 @@ class DropdownMultiSelect extends Component {
   }
 
   itemSelected(event) {
+
     this.state.selected.push(event.target.value);
 
     let index = this.state.unselected.indexOf(event.target.value);
     this.state.unselected.splice(index, 1);
+
+    event.target.value = "default";
+
     this.updateMenu(this.state.unselected);
   }
 
@@ -46,6 +50,7 @@ class DropdownMultiSelect extends Component {
         <h5>{this.props.title}</h5>
         <div>
           <select onChange={this.itemSelected}>
+            <option disabled selected value="default"> -- select an option -- </option>
             {this.state.options}
           </select>
         </div>
