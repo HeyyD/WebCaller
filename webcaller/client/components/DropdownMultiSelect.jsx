@@ -5,13 +5,13 @@ class DropdownMultiSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selects: []
+      unselected: []
     }
   }
 
   componentWillMount() {
     for(let o of this.props.options) {
-      this.state.selects.push(<option>{o}</option>);
+      this.state.unselected.push(<option>{o}</option>);
     }
   }
 
@@ -19,9 +19,11 @@ class DropdownMultiSelect extends Component {
     return(
       <label>
         {this.props.title}
-        <select>
-          {this.state.selects}
-        </select>
+        <div>
+          <select>
+            {this.state.unselected}
+          </select>
+        </div>
       </label>
     );
   }
