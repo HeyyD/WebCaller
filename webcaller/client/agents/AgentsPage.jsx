@@ -12,13 +12,15 @@ export default class AgentsPage extends TrackerReact(React.Component) {
         super(props);
         this.state = ({
             subscription: {
-                agents: Meteor.subscribe("subUsers")
+                agents: Meteor.subscribe("subUsers"),
+                projects: Meteor.subscribe("userProjects")
             }
         });
     }
 
     componentWillUnmount(){
         this.state.subscription.agents.stop();
+        this.state.subscription.projects.stop();
     }
 
     subUsers(){
