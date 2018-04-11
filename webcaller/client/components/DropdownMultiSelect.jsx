@@ -78,8 +78,8 @@ class DropdownMultiSelect extends Component {
           {this.state.tags}
         </div>
         <div>
-          <select onChange={this.itemSelected}>
-            <option disabled selected value="default"> -- select an option -- </option>
+          <select defaultValue="default" onChange={this.itemSelected}>
+            <option disabled value="default"> -- select an option -- </option>
             {this.state.options}
           </select>
         </div>
