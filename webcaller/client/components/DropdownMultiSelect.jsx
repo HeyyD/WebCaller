@@ -6,6 +6,7 @@ class DropdownMultiSelect extends Component {
     super(props);
     this.itemSelected = this.itemSelected.bind(this);
     this.updateMenu = this.updateMenu.bind(this);
+    this.deselectItem = this.deselectItem.bind(this);
 
     this.state = {
       selected: [],
@@ -49,7 +50,7 @@ class DropdownMultiSelect extends Component {
   updateTags(array) {
     let temp = [];
     for(o of array) {
-      temp.push(<button>{o}</button>);
+      temp.push(<button value={o} onClick={this.deselectItem}>{o}</button>);
     }
 
     this.setState({
@@ -57,10 +58,22 @@ class DropdownMultiSelect extends Component {
     })
   }
 
+  deselectItem(event) {
+    event.preventDefault();
+
+    this.state.unselected.push(event.target.value);
+
+    let index = this.state.selected.indexOf(event.target.value);
+    this.state.selected.splice(index, 1);
+
+    this.updateMenu(this.state.unselected);
+    this.updateTags(this.state.selected);
+  }
+
   render() {
     return(
       <label>
-        <h5>{this.props.title}</h5>
+        <h4>{this.props.title}</h4>
         <div>
           {this.state.tags}
         </div>
