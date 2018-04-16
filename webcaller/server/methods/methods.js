@@ -82,8 +82,7 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
-    parseExcelData(data) {
-
+    parseExcelData(data, listName, listDescription) {
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
@@ -106,8 +105,8 @@ Meteor.methods({
         });
 
         CallLists.insert({
-            name: 'listName',
-            description: 'listDescription',
+            name: listName,
+            description: listDescription,
             contacts: contacts,
             createdAt: Date(),
             user: Meteor.userId()
