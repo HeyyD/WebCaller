@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import XLSX from 'xlsx';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 
 export default class CallListForm extends React.Component {
 
@@ -10,17 +10,7 @@ export default class CallListForm extends React.Component {
         this.state = ({
             listName: "",
             listDescription: "",
-            contacts: [{
-                name: "banaani-tom",
-                customerStatus: "asiakas",
-                region: "suomi",
-                city: "tampere",
-                address: "hervanta",
-                industry: "tiko",
-                telephone: "123",
-                email: "tom@tom.tom",
-                lastAction: "23rd may 2017"
-            }]
+            data: []
         });
 
         this.handleChange = this.handleChange.bind(this);
@@ -44,10 +34,10 @@ export default class CallListForm extends React.Component {
 			const ws = wb.Sheets[wsname];
 			// Convert array of arrays
             const data = XLSX.utils.sheet_to_json(ws, {header:1});
-            // Pass data to backend 
-            console.log(data);
-            Meteor.call('parseExcelData', data);
-			//this.setState({ data: data, cols: make_cols(ws['!ref']) });
+            // Set state
+            let a = this.state.data.slice();
+            a = data;
+            this.setState({data: a});
 		};
 		if(rABS) {
             reader.readAsBinaryString(file);
@@ -61,18 +51,13 @@ export default class CallListForm extends React.Component {
     }
 
     addList(event){
-        let list = {
-            name: this.state.listName,
-            description: this.state.listDescription,
-            contacts: this.state.contacts
-        };
-        Meteor.call('addCallList', list);
+        Meteor.apply('parseExcelData', [this.state.data, this.state.listName, this.state.listDescription]);
         this.refs.listName.value = "";
         this.refs.listDescription.value = "";
         this.setState({
             listName: "",
-            listDescription: ""
-            //contacts: []
+            listDescription: "",
+            data: []
         })
         event.preventDefault();
     }
