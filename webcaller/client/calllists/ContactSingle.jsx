@@ -18,6 +18,7 @@ export default class ContactSingle extends React.Component {
                     </tr>);
             i++;
         }
+        keys.push(<br></br>);
         return keys;
     }
 
@@ -26,8 +27,7 @@ export default class ContactSingle extends React.Component {
         return(
             <table>
                 <tbody>
-                {keys}
-                <ExcelReader/>
+                    {keys}
                 </tbody>
             </table>
         );
