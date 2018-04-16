@@ -10,6 +10,7 @@ export default class AgentsForm extends React.Component {
         this.state = ({
             username: "",
             password: "",
+            projects: ["lol", "ebin"]
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
@@ -34,6 +35,11 @@ export default class AgentsForm extends React.Component {
         })
     }
 
+    handleSelectChange (value) {
+		console.log('You\'ve selected:', value);
+        this.setState({ projects: [value] });
+	}
+
     render(){
         return(
             <form>
@@ -55,7 +61,18 @@ export default class AgentsForm extends React.Component {
                         ref="password" 
                         onChange={this.handleChange}/>
                     </div>
-                    <label></label>
+                    <label>projects</label>
+                    <Select
+                        closeOnSelect={false}
+                        disabled={false}
+                        multi
+                        onChange={this.handleSelectChange}
+                        placeholder="Select projects"
+                        removeSelected={this.state.removeSelected}
+                        rtl={false}
+                        simpleValue
+                        value={this.state.projects}
+				    />
                     <button onClick={this.addUser}>Add Agent</button>
                 </div>
             </form>
