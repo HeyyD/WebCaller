@@ -17,6 +17,10 @@ export default class AgentsForm extends React.Component {
         this.addUser = this.addUser.bind(this);
     }
 
+    getProjects(){
+        return CallProjects.find().fetch();
+    }
+
     handleChange(event){
         this.setState({[event.target.name]: event.target.value});
     }
@@ -37,6 +41,7 @@ export default class AgentsForm extends React.Component {
     }
 
     render(){
+        console.log(this.getProjects());
         return(
             <form>
                 <div>
