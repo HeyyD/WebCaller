@@ -134,5 +134,37 @@ Meteor.methods({
                 });
             }
         });
+    },
+    parseExcelData(data) {
+
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
+        }
+
+        let contactKeys = data[0];
+        let contacts = [];
+        
+        data.forEach(row => {
+            if (row !== data[0]) {
+                let contact = {};
+                for (let index = 0; index < row.length; index++) {
+                    contact[contactKeys[index]] = row[index];
+                }
+                contacts.push(contact);
+            }
+        });
+
+        CallLists.insert({
+            name: 'listName',
+            description: 'listDescription',
+            contacts: contacts,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
+        
     }
 });
