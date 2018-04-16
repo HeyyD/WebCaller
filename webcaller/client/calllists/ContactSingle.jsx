@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ExcelReader from './ExcelReader.jsx';
 
 export default class ContactSingle extends React.Component {
 
