@@ -4,8 +4,8 @@ var authToken = '0e337a0dd91ddb837ed3d4370ade02e9';   // Your Auth Token from ww
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
-
-
+var readExcelFile = require('excel-as-json');
+var convertExcel = require('excel-as-json').processFile;
 
 
 Meteor.methods({
@@ -29,9 +29,11 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
+
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
             throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
         }
+
         CallProjects.insert({
             name: project.name,
             description: project.description,
@@ -58,9 +60,57 @@ Meteor.methods({
         }
 
         if(!Roles.userIsInRole(agentID, ['agent', Meteor.userId()])){
-            throw new Meteor.Error('not enough rights', 'You can only delete your own agents!')
+            throw new Meteor.Error('not enough rights', 'You can only delete your own agents!');
         }
 
         Meteor.users.remove(agentID);
+    },
+    addCallList(callList){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
+        }
+
+        CallLists.insert({
+            name: callList.name,
+            description: callList.description,
+            contacts: callList.contacts,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
+    },
+    parseExcelData(data, listName, listDescription) {
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
+        }
+
+        let contactKeys = data[0];
+        let contacts = [];
+        
+        data.forEach(row => {
+            if (row !== data[0]) {
+                let contact = {};
+                for (let index = 0; index < row.length; index++) {
+                    contact[contactKeys[index]] = row[index];
+                }
+                contacts.push(contact);
+            }
+        });
+
+        CallLists.insert({
+            name: listName,
+            description: listDescription,
+            contacts: contacts,
+            createdAt: Date(),
+            user: Meteor.userId()
+        });
+        
     }
 });
