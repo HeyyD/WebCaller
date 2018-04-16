@@ -23,7 +23,6 @@ export default class ContactSingle extends React.Component {
 
     render(){
         let keys = this.readContact();
-//{keys}
         return(
             <table>
                 <tbody>
