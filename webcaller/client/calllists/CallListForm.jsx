@@ -98,6 +98,11 @@ export default class CallListForm extends React.Component {
                             ref="listDescription"
                             onChange={this.handleChange}/>
                     </div>
+                    <div className="dropzone">
+                        <Dropzone onDrop={this.onDrop.bind(this)}>
+                            <p>Drag and drop a file here, or click to select file to upload.</p>
+                        </Dropzone>
+                    </div>
                     <button onClick={this.addList}>Add List</button>
                 </div>
             </form>
