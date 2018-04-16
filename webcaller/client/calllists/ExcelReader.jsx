@@ -9,10 +9,11 @@ export default class ExcelReader extends React.Component {
     }
 
     readFile(){
-        
+
     }
 
     render(){
+        Meteor.call('readExcelFile', 'C:/Users/Tom/Documents/WebCaller/WebCaller/webcaller/numbers.xlsx');
         return <tr><td>{this.readFile()}</td></tr>;
     }
 }

@@ -4,8 +4,8 @@ var authToken = '0e337a0dd91ddb837ed3d4370ade02e9';   // Your Auth Token from ww
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
-
-
+var readExcelFile = require('excel-as-json');
+var convertExcel = require('excel-as-json').processFile;
 
 
 Meteor.methods({
@@ -29,9 +29,11 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
+
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
             throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
         }
+
         CallProjects.insert({
             name: project.name,
             description: project.description,
@@ -67,9 +69,11 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
+
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
             throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
         }
+
         CallLists.insert({
             name: callList.name,
             description: callList.description,
@@ -79,6 +83,8 @@ Meteor.methods({
         });
     },
     readExcelFile(excelFile){
+        console.log('readExcelFile');
+        console.log(excelFile);
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
         }
@@ -87,6 +93,22 @@ Meteor.methods({
             throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
         }
 
-        
+        convertExcel(excelFile, null, {omitEmptyFields: true}, (err, data) => {
+            console.log(excelFile);
+            console.log(data);
+            if(err) {
+                console.log(err);
+            } else {
+
+                console.log(data);                
+                CallLists.insert({
+                    name: 'listName',
+                    description: 'listDescription',
+                    contacts: ':D',
+                    createdAt: Date(),
+                    user: Meteor.userId()
+                });
+            }
+        });
     }
 });
