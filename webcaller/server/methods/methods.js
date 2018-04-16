@@ -82,35 +82,6 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
-    readExcelFile(excelFile){
-        console.log('readExcelFile');
-        console.log(excelFile);
-        if(!Meteor.userId()){
-            throw new Meteor.Error('not-authorized!');
-        }
-
-        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
-            throw new Meteor.Error('not enough rights', 'Only admins can create new lists!');
-        }
-
-        convertExcel(excelFile, null, {omitEmptyFields: true}, (err, data) => {
-            console.log(excelFile);
-            console.log(data);
-            if(err) {
-                console.log(err);
-            } else {
-
-                console.log(data);                
-                CallLists.insert({
-                    name: 'listName',
-                    description: 'listDescription',
-                    contacts: ':D',
-                    createdAt: Date(),
-                    user: Meteor.userId()
-                });
-            }
-        });
-    },
     parseExcelData(data) {
 
         if(!Meteor.userId()){
