@@ -23,8 +23,6 @@ export default class CallListContents extends TrackerReact(React.Component) {
     }
 
     render(){
-        console.log(this.callLists());
-        console.log(this.props.id);
         return(
             <div>
                 <ul>
