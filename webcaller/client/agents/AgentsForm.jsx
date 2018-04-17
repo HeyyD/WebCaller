@@ -8,26 +8,13 @@ export default class AgentsForm extends TrackerReact(React.Component) {
     constructor(props){
         super(props);
 
-        //Get project data
-        let temp = this.getProjects();
-        let projects = []
-        for (let i = 0; i < temp.length; i++) {
-            projects[i] = temp[i].name;
-        }
-
         this.state = ({
             username: "",
             password: "",
-            projects: projects
+            projects: []
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
-        
-        
-    }
-
-    getProjects(){
-        return CallProjects.find().fetch();
     }
 
     handleChange(event){
@@ -43,14 +30,16 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         Meteor.call('insertAgent', userData);
         this.refs.username.value = "";
         this.refs.password.value = "";
-        this.setState({
-            username: "",
-            password: ""
-        })
+        
+    }
+
+    projects(){
+        return CallProjects.find().fetch();
     }
 
     render(){
         console.log(this.state.projects);
+        let temp = [];
         return(
             <form>
                 <div>
@@ -71,7 +60,14 @@ export default class AgentsForm extends TrackerReact(React.Component) {
                         ref="password" 
                         onChange={this.handleChange}/>
                     </div>
-                    <DropdownMultiSelect title="Projects" options={this.state.projects} />
+                    {   
+                        this.projects().map( (project, i, map) => {
+                            temp.push(project.name)
+                            if(map.length - 1 == i)
+                                return <DropdownMultiSelect title="Projects" options={temp} />
+                        }
+                    )}
+                    
                     <button onClick={this.addUser}>Add Agent</button>
                 </div>
             </form>
