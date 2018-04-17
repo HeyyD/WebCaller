@@ -1,20 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DropdownMultiSelect from '../components/DropdownMultiSelect';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-
-export default class AgentsForm extends React.Component {
+export default class AgentsForm extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
 
+        //Get project data
+        let temp = this.getProjects();
+        let projects = []
+        for (let i = 0; i < temp.length; i++) {
+            projects[i] = temp[i].name;
+        }
+
         this.state = ({
             username: "",
             password: "",
-            projects: []
+            projects: projects
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
+        
+        
     }
 
     getProjects(){
@@ -41,7 +50,7 @@ export default class AgentsForm extends React.Component {
     }
 
     render(){
-        console.log(this.getProjects());
+        console.log(this.state.projects);
         return(
             <form>
                 <div>
