@@ -11,7 +11,8 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         this.state = ({
             username: "",
             password: "",
-            projects: []
+            projects: [],
+            activeProjects: []
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
@@ -62,9 +63,9 @@ export default class AgentsForm extends TrackerReact(React.Component) {
                     </div>
                     {   
                         this.projects().map( (project, i, map) => {
-                            temp.push(project.name)
+                            temp.push(project.name);
                             if(map.length - 1 == i)
-                                return <DropdownMultiSelect title="Projects" options={temp} />
+                                return <DropdownMultiSelect title="Projects" options={temp} />;
                         }
                     )}
                     

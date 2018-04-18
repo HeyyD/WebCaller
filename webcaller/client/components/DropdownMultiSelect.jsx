@@ -45,6 +45,7 @@ class DropdownMultiSelect extends Component {
 
     this.updateMenu(this.state.unselected);
     this.updateTags(this.state.selected);
+    this.props.onSelect(this.state.selected);
   }
 
   updateTags(array) {
