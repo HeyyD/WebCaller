@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import './styles/ContactList.css';
+import CallWindow from "./CallWindow";
 
 class ContactList extends Component {
   constructor(props){
     super(props);
     this.createContactList = this.createContactList.bind(this);
+
+    this.state = {
+      showCallWindow: false
+    };
   }
 
   makeCall(customer){
@@ -44,6 +49,10 @@ class ContactList extends Component {
             </tbody>
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
+          {this.state.showCallWindow ?
+            <CallWindow/>
+            : null
+          }
         </div>
     );
   }
