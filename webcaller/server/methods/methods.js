@@ -55,7 +55,10 @@ Meteor.methods({
         }
 
         CallProjects.update({_id: project._id}, {
-            $set: {description: project.description}
+            $set: {
+                description: project.description,
+                agents: project.agents
+            }
         })
 
         CallProjects.update({_id: project._id}, {
@@ -76,6 +79,7 @@ Meteor.methods({
         let user = Accounts.createUser(newUserData);
         Roles.addUsersToRoles(user, ['agent', Meteor.userId()]);
         Roles.removeUsersFromRoles(user, ['admin']);
+        console.log(user);
         return user;
     },
     deleteAgent(agentID){
@@ -135,14 +139,10 @@ Meteor.methods({
             createdAt: Date(),
             user: Meteor.userId()
         });
-<<<<<<< HEAD
     },
     insertContact(callListId, contacts) {
         CallLists.update(callListId, {
             $set: {contacts: contacts}
         });
-=======
-        
->>>>>>> 5f0967fc7c1cc40e0897ef7e006f20d31d1d73c1
     }
 });
