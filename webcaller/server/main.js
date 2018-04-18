@@ -2,12 +2,16 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   Accounts.onCreateUser(function (options, user) {
+
+    const customizedUser = Object.assign({
+      projects: [],
+    }, user);
+
     if (options.profile) {
-      user.profile = options.profile;
-      user.projects = options.projects;
+      customizedUser.profile = options.profile;
     }
 
-    user.roles = ['admin'];
-    return user;
+    customizedUser.roles = ['admin'];
+    return customizedUser;
   });
 });
