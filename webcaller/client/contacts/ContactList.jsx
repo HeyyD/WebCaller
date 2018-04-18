@@ -63,7 +63,7 @@ class ContactList extends Component {
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
-            <CallWindow onClick={this.endCall}/>
+            <CallWindow onClick={this.endCall} customer={this.state.customer}/>
             : null
           }
         </div>
