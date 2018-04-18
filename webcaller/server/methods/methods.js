@@ -118,6 +118,10 @@ Meteor.methods({
             createdAt: Date(),
             user: Meteor.userId()
         });
-        
+    },
+    insertContact(callListId, contacts) {
+        CallLists.update(callListId, {
+            $set: {contacts: contacts}
+        });
     }
 });
