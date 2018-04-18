@@ -7,9 +7,9 @@ class ContactList extends Component {
     this.createContactList = this.createContactList.bind(this);
   }
 
-  makeCall(number){
-    Meteor.call('makeCall', number, (error) => {
-      console.log('hi!');
+  makeCall(customer){
+    Meteor.call('makeCall', customer.number, (error) => {
+      console.log(customer);
     });
   }
 
@@ -22,7 +22,7 @@ class ContactList extends Component {
         <td>{contactList[i].phone}</td>
         <td>{contactList[i].name}</td>
         <td>{contactList[i].company}</td>
-        <td className="Contact-table-call"><a href="" onClick={ () => this.makeCall(contactList[i].phone)}>Call</a></td>
+        <td className="Contact-table-call"><a href="" onClick={ () => this.makeCall(contactList[i])}>Call</a></td>
       </tr>);
     }
     return tableRows;
