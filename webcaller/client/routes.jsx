@@ -9,7 +9,12 @@ import CallListContents from './calllists/CallListContents.jsx';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 
+FlowRouter.wait();
 
+Tracker.autorun(() => {
+    if(Roles.subscription.ready() && !FlowRouter._initialized)
+        FlowRouter.initialize();
+});
 FlowRouter.route('/', {
     action() {
         mount(MainLayout, {
