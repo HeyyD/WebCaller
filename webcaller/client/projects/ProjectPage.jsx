@@ -48,8 +48,6 @@ export default class ProjectPage extends TrackerReact(React.Component) {
     }
 
     render(){
-        console.log(this.projects())
-        let muuttuja = this.projects();
         return(
             <div>
                 {this.renderContent()}
