@@ -10,4 +10,4 @@ Meteor.publish("subUsers", function(){
 });
 Meteor.publish("callLists", function(){
     return CallLists.find();
-})
+});
