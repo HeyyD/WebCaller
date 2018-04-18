@@ -38,8 +38,11 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         return CallProjects.find().fetch();
     }
 
-    onSelect(){
-        
+    onSelect(selected){
+        for(let i = 0; i < this.state.projects.length; i++){
+            if(selected[i] === this.state.projects[i].name)
+                activeProjects.push(this.state.projects[i]);
+        }
     }
 
     render(){
