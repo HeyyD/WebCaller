@@ -26,7 +26,8 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         event.preventDefault();
         let userData = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            projects: this.state.activeProjects
         }
         Meteor.call('insertAgent', userData);
         this.refs.username.value = "";
