@@ -16,6 +16,7 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         });
         this.handleChange = this.handleChange.bind(this);
         this.addUser = this.addUser.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     handleChange(event){
@@ -26,10 +27,16 @@ export default class AgentsForm extends TrackerReact(React.Component) {
         event.preventDefault();
         let userData = {
             username: this.state.username,
-            password: this.state.password,
-            projects: this.state.activeProjects
+            password: this.state.password
         }
-        Meteor.call('insertAgent', userData);
+        
+        Meteor.call('insertAgent', userData, (err, user) => {
+            for(let i = 0; i < this.state.activeProjects.length; i++){
+                let project = this.state.activeProjects[i];
+                project.agents.push(user);
+                Meteor.call('modifyProject', project);
+            }
+        });
         this.refs.username.value = "";
         this.refs.password.value = "";
         
@@ -40,14 +47,26 @@ export default class AgentsForm extends TrackerReact(React.Component) {
     }
 
     onSelect(selected){
-        for(let i = 0; i < this.state.projects.length; i++){
-            if(selected[i] === this.state.projects[i].name)
-                activeProjects.push(this.state.projects[i]);
+        let temp = []
+        for(let i = 0; i < selected.length; i++){
+            for(let j = 0; j < this.state.projects.length; j++){
+                if(selected[i] === this.state.projects[j].name){
+                    temp.push(this.state.projects[j]);
+                }
+            }
         }
+        this.setState({
+            activeProjects: temp
+        })
+    }
+
+    componentWillReceiveProps(props){
+        this.setState({
+            projects: props.projects
+        })
     }
 
     render(){
-        console.log(this.state.projects);
         let temp = [];
         return(
             <form>
@@ -73,7 +92,7 @@ export default class AgentsForm extends TrackerReact(React.Component) {
                         this.projects().map( (project, i, map) => {
                             temp.push(project.name);
                             if(map.length - 1 == i)
-                                return <DropdownMultiSelect title="Projects" options={temp} />;
+                                return <DropdownMultiSelect key={project._id} onSelect={this.onSelect} title="Projects" options={temp} />;
                         }
                     )}
                     
