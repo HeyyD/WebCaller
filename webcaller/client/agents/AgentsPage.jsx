@@ -29,12 +29,12 @@ export default class AgentsPage extends TrackerReact(React.Component) {
             return(
                 <div>
                 <AgentsForm />
-                <ul className="agentsList">
+                <table className="agentsList">
                     {this.subUsers().map((agent) => {
                         if(agent._id != Meteor.userId())
                             return <AgentSingle key={agent._id} agent={agent} />;
                     })}
-                </ul>
+                </table>
             </div>
             );
         }else {
