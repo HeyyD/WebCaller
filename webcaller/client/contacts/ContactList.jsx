@@ -7,6 +7,7 @@ class ContactList extends Component {
     super(props);
     this.createContactList = this.createContactList.bind(this);
     this.toggleCallWindow = this.toggleCallWindow.bind(this);
+    this.endCall = this.endCall.bind(this);
 
     this.state = {
       showCallWindow: false
@@ -40,6 +41,11 @@ class ContactList extends Component {
     return tableRows;
   }
 
+  endCall() {
+    this.toggleCallWindow();
+    console.log('end call');
+  }
+
   render(){
     return (
         <div>
@@ -57,7 +63,7 @@ class ContactList extends Component {
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
-            <CallWindow/>
+            <CallWindow onClick={this.endCall}/>
             : null
           }
         </div>
