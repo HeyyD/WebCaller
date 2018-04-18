@@ -13,7 +13,6 @@ export default class AgentSingle extends React.Component {
     }
 
     render(){
-        console.log(this.props.agent);
         return(<li className="agentSingle">{this.props.agent.username}
                     <button className="agentBtn" onClick={this.deleteAgent}>
                         delete

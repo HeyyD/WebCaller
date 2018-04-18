@@ -79,6 +79,7 @@ Meteor.methods({
         let user = Accounts.createUser(newUserData);
         Roles.addUsersToRoles(user, ['agent', Meteor.userId()]);
         Roles.removeUsersFromRoles(user, ['admin']);
+        console.log(user);
         return user;
     },
     deleteAgent(agentID){
