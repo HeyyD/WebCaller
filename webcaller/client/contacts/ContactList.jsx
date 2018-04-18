@@ -6,24 +6,22 @@ class ContactList extends Component {
   constructor(props){
     super(props);
     this.createContactList = this.createContactList.bind(this);
-    this.toggleCallWindow = this.toggleCallWindow.bind(this);
+    this.makeCall = this.makeCall.bind(this);
     this.endCall = this.endCall.bind(this);
 
     this.state = {
-      showCallWindow: false
+      showCallWindow: false,
+      customer: null
     };
   }
 
   makeCall(customer){
     Meteor.call('makeCall', customer.number, (error) => {
-      this.toggleCallWindow();
+      this.setState({
+        showCallWindow: !this.state.showCallWindow,
+        customer : customer
+      })
     });
-  }
-
-  toggleCallWindow() {
-    this.setState({
-      showCallWindow: !this.state.showCallWindow
-    })
   }
 
   createContactList(){
@@ -42,8 +40,10 @@ class ContactList extends Component {
   }
 
   endCall() {
-    this.toggleCallWindow();
-    console.log('end call');
+    this.setState({
+      showCallWindow: !this.state.showCallWindow,
+      customer: null
+    })
   }
 
   render(){
