@@ -56,10 +56,12 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
         event.preventDefault();
     }
+    onDeleteListItem(listItem){
+        
+    }
 
     render(){
         console.log(this.state);
-        let test = ["ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol"];
         let temp = [];
         return(
             <form>
@@ -88,7 +90,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                 <ListView 
                     options={test} 
                     listContent={test} 
-                    onDeleteListItem={}
+                    onDeleteListItem={this.onDeleteListItem}
                     onAddListItem={}/>
             </form>
         );
