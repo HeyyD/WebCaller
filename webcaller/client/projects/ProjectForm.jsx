@@ -79,7 +79,7 @@ export default class ProjectForm extends React.Component {
         let project = {
             name: this.state.projectName,
             description: this.state.projectDescription,
-            callLists: this.state.callLists,
+            callLists: lists,
             agents: users
         };
         console.log(project.agents);

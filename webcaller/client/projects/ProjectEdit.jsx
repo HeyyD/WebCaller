@@ -14,11 +14,13 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onDeleteListItem = this.onDeleteListItem.bind(this);
         this.onAddListItem = this.onAddListItem.bind(this);
         this.getUnselectedAgents = this.getUnselectedAgents.bind(this);
+        this.listsLoaded = this.listsLoaded.bind(this);
 
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects", this.onSubscriptionReady),
-                agents: Meteor.subscribe("subUsers", this.agentsLoaded)
+                agents: Meteor.subscribe("subUsers", this.agentsLoaded),
+                callLists: Meteor.subscribe("callLists", this.listsLoaded)
             },
             _id: '',
             projectName: '',
