@@ -12,6 +12,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
         this.agentsLoaded = this.agentsLoaded.bind(this);
         this.onDeleteListItem = this.onDeleteListItem.bind(this);
+        this.onAddListItem = this.onAddListItem.bind(this);
         this.getUnselectedAgents = this.getUnselectedAgents.bind(this);
 
         this.state = {
@@ -31,13 +32,15 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     agentsLoaded(){
         let agents = Meteor.users.find().fetch();
         let project = CallProjects.find({_id:this.props.id}).fetch()[0];
+        console.log("AGENTS LOADED");
         
 
         let projectAgents = [];
         for(let i = 0; i < project.agents.length; i++){
             projectAgents.push(Meteor.users.find({_id: project.agents[i]}).fetch()[0]);
+            console.log("moi");
         }
-
+        console.log(projectAgents);
         this.setState({
             agents: agents,
             projectAgents: projectAgents
@@ -68,11 +71,16 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
     editProject(event) {
 
+        let projectAgents = [];
+        for(let i = 0; i < this.state.projectAgents.length; i++){
+            projectAgents.push(this.state.projectAgents[i]._id);
+        }
+
         let p = {
             _id : this.state._id,
             name: this.state.projectName,
             description : this.state.projectDescription,
-            agents: this.state.projectAgents
+            agents: projectAgents
         };
 
         Meteor.call('modifyProject', p);
@@ -81,58 +89,50 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
         event.preventDefault();
     }
-    onDeleteListItem(listItems){
+    onDeleteListItem(listItem){
+        console.log("ONDELETE");
         let array = this.state.projectAgents;
-        console.log(array);
+        
         for(let i = 0; i < array.length; i++){
-            let remove = true;
-            for(let j = 0; j < listItems.length; j++){
-                if(array[i].username == listItems[j]){
-                    remove = false;
-                }
-            }
-            if(remove){
+            console.log(listItem)
+            if(array[i].username == listItem && array.length > 1){
                 array.splice(i, 1);
-                break;
             }
+            else if(array[i].username == listItem)
+                array = []
         }
+        let unselected = this.state.unselectedAgents;
+        unselected.push(Meteor.users.find({username: listItem}).fetch()[0])
         this.setState({
-            projectAgents: array
+            projectAgents: array,
+            unselectedAgents: unselected
         });
+        
     }
 
-    onAddListItem(array){
+    onAddListItem(listItem){
+        console.log("PROJECTEDIT");
+        console.log(listItem);
+        let agent = Meteor.users.find({username: listItem}).fetch()[0];
         let projectAgents = this.state.projectAgents;
-        for(let i = 0; i < array.length; i++){
-            let add = true;
-            for(let j = 0; j < projectAgents; j++){
-                if(array[i] == projectAgents.username){
-                    add = false;
-                }
-            }
-            if(add){
-                projectAgents.push(Meteor.users.find({username: array[i]}).fetch()[0]);
-                break;
-            }
-        }
+        //let unselectedAgents = this.state.unselectedAgents;
+        projectAgents.push(agent);
+        console.log(projectAgents);
         this.setState({
             projectAgents: projectAgents
         })
+        this.getUnselectedAgents();
     }
 
     getUnselectedAgents(){
         unselectedAgents = this.state.agents;
-        for(let i = unselectedAgents.length-1; i > 0; i--){
-            removed = false;
+        console.log("UNSELECTED");
+        console.log(unselectedAgents);
+        for(let i = unselectedAgents.length-1; i >= 0; i--){
             for(let j = 0; j < this.state.projectAgents.length; j++){
                 if(unselectedAgents[i].username == this.state.projectAgents[j].username){
-                    removed = true;
+                    unselectedAgents.splice(i, 1);
                 }
-            }
-            console.log("moi")
-            if(removed){
-                console.log("Hello")
-                unselectedAgents.splice(i, 1);
             }
         }
 
@@ -142,8 +142,6 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     }
 
     render(){
-        console.log("RENDER")
-        console.log(this.state.unselectedAgents);
         let agentArray = [];
         for(let i = 0; i < this.state.projectAgents.length; i++){
             agentArray.push(this.state.projectAgents[i].username)
@@ -180,7 +178,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     options={unselectedAgents} 
                     listContent={agentArray} 
                     onDeleteListItem={this.onDeleteListItem}
-                    onAddListItem={this.onDeleteListItem}/>
+                    onAddListItem={this.onAddListItem}/>
             </form>
         );
     }

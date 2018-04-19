@@ -10,7 +10,7 @@
 .contentList {
     -webkit-padding-start: 0px;
     width: 100%;
-    height: 80%;
+    height: 90%;
     background-color: rgb(188, 221, 213);
     overflow: scroll;
     margin: 0;
@@ -32,4 +32,12 @@
 }
 .contentList li button {
     float: right;
+}
+
+.botContainer select {
+    width: 70%;
+}
+
+.botContainer button {
+    width: 30%;
 }

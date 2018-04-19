@@ -26,20 +26,29 @@ export default class ListView extends Component {
         event.preventDefault();
         console.log(event);
         let array = this.state.listContent;
+        let listItem = array[index];
         array.splice(index, 1);
         this.setState({
             listContent: array
         })
-        this.props.onDeleteListItem(array);
+        this.props.onDeleteListItem(listItem);
     }
 
-    addListItem(listItem){
-        let array = this.state.listItem;
-        array.push(listItem);
-        this.setState({
-            listContent: array
-        });
-        this.props.onAddListItem(array);
+    addListItem(event, listItem){
+        if(this.state.newItem != ""){
+            console.log(this.props.onAddListItem);
+            event.preventDefault();
+            let array = this.state.listContent;
+            array.push(listItem);
+            this.setState({
+                listContent: array
+            });
+            this.props.onAddListItem(listItem);
+            this.setState({
+                newItem: ""
+            })
+            document.getElementById("defaultValue").selected="selected";
+        }
     }
 
     itemSelected(event){
@@ -47,7 +56,7 @@ export default class ListView extends Component {
     }
 
     render(){
-        console.log("LISTA" + this.state.options);
+        console.log("LISTA");
         return(
             <div className="viewContainer">
                 <div className="contentList">
@@ -57,14 +66,14 @@ export default class ListView extends Component {
                         })}
                     </ul>
                 </div>
-                <div>
-                    <select defaultValue="default" onChange={this.itemSelected}>
-                        <option disabled value="default"> -- select an option -- </option>
+                <div className="botContainer">
+                    <select defaultValue="default" onChange={(event) => this.itemSelected(event, )}>
+                        <option id="defaultValue" value="default"> -- select an option -- </option>
                         {this.state.options.map((option) => {
                             return <option>{option}</option>;
                         })}
                     </select>
-                    <button onClick={() => this.addListItem(this.state.newItem)}>Add</button>
+                    <button onClick={(event) => this.addListItem(event, this.state.newItem)}>Add</button>
                 </div>
             </div>
         );
