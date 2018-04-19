@@ -9,7 +9,8 @@ export default class ListView extends Component {
         super(props);
         this.state = {
             options: [],
-            listContent: []
+            listContent: [],
+            newItem: ""
         }
     }
 
@@ -40,6 +41,10 @@ export default class ListView extends Component {
         this.props.addListItem(array);
     }
 
+    itemSelected(event){
+        
+    }
+
     render(){
         console.log("LISTA" + this.state.options);
         return(
@@ -58,7 +63,7 @@ export default class ListView extends Component {
                             return <option>{option}</option>;
                         })}
                     </select>
-                    <button onClick={this.addListItem}>Add</button>
+                    <button onClick={() => this.addListItem(this.state.newItem)}>Add</button>
                 </div>
             </div>
         );
