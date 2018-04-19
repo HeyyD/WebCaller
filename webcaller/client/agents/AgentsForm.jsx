@@ -91,7 +91,7 @@ export default class AgentsForm extends TrackerReact(React.Component) {
                     {   
                         this.projects().map( (project, i, map) => {
                             temp.push(project.name);
-                            if(map.length - 1 == i)
+                            if(map.length - 1 == i || map.length === 0)
                                 return <DropdownMultiSelect key={project._id} onSelect={this.onSelect} title="Projects" options={temp} />;
                         }
                     )}
