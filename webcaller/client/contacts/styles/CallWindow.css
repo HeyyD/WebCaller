@@ -19,6 +19,7 @@
   margin: auto;
   text-align: center;
   border-radius: 5px;
+  min-width: 500px;
   background: #24232d;
 }
 
@@ -46,4 +47,10 @@
   background: #584164;
   border: solid #584164;
   display: inline;
+}
+
+.Call-window-button-container input[disabled] {
+  color: #4b4a5f;
+  background: #3b3a45;
+  border: solid #3b3a45;
 }
