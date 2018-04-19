@@ -20,7 +20,6 @@ export default class AgentEdit extends TrackerReact(React.Component){
 onSubscriptionReady(){
 
     let agent = Meteor.users.find({_id: this.props.id}).fetch()[0];
-    console.log("this.id"+this.props.id)
     this.setState({
         _id: agent._id,
         username: agent.username,
@@ -61,11 +60,10 @@ render(){
                     <input type="text" 
                         name="username" 
                         ref="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}/>
+                        value={this.state.username}/>
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>New Password:</label>
                 </div>
                 <div>
                     <input type="password" 
