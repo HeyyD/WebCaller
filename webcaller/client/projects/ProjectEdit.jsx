@@ -12,6 +12,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
         this.agentsLoaded = this.agentsLoaded.bind(this);
         this.onDeleteListItem = this.onDeleteListItem.bind(this);
+        this.getUnselectedAgents = this.getUnselectedAgents.bind(this);
+
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects", this.onSubscriptionReady),
@@ -21,7 +23,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectName: '',
             projectDescription: '',
             projectAgents: [],
-            agents: []
+            agents: [],
+            unselectedAgents: []
         }
     }
 
@@ -39,6 +42,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             agents: agents,
             projectAgents: projectAgents
         });
+        this.getUnselectedAgents();
     }
 
     onSubscriptionReady(){
@@ -96,14 +100,42 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectAgents: array
         });
     }
+
+    onAddListItem(array){
+
+    }
+
     getUnselectedAgents(){
-        
+        unselectedAgents = this.state.agents;
+        for(let i = unselectedAgents.length-1; i > 0; i--){
+            removed = false;
+            for(let j = 0; j < this.state.projectAgents.length; j++){
+                if(unselectedAgents[i].username == this.state.projectAgents[j].username){
+                    removed = true;
+                }
+            }
+            console.log("moi")
+            if(removed){
+                console.log("Hello")
+                unselectedAgents.splice(i, 1);
+            }
+        }
+
+        this.setState({
+            unselectedAgents: unselectedAgents
+        });
     }
 
     render(){
+        console.log("RENDER")
+        console.log(this.state.unselectedAgents);
         let agentArray = [];
         for(let i = 0; i < this.state.projectAgents.length; i++){
             agentArray.push(this.state.projectAgents[i].username)
+        }
+        let unselectedAgents = [];
+        for(let i = 0; i < this.state.unselectedAgents.length; i++){
+            unselectedAgents.push(this.state.unselectedAgents[i].username);
         }
         return(
             <form>
@@ -130,7 +162,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     <button onClick={this.editProject}>Save changes</button>
                 </div>
                 <ListView 
-                    options={agentArray} 
+                    options={unselectedAgents} 
                     listContent={agentArray} 
                     onDeleteListItem={this.onDeleteListItem}
                     onAddListItem={this.onDeleteListItem}/>
