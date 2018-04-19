@@ -21,8 +21,6 @@ export const MainLayout = ({content}) => (
             <h2>WebCaller</h2>
             <nav>
                 <AdminNavi />   
-                <a href="/agents">Agents</a>
-                <a href="/projects">Projects</a>
                 <a href="/calllists">Call lists</a>
                 <a href="/">User</a>
                 <AccountsUI />
