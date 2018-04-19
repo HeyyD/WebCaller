@@ -34,13 +34,10 @@ class CallWindow extends Component {
         company: this.props.contacts[index].company,
         number: this.props.contacts[index].phone
       }
-    })
+    });
   }
 
   render() {
-
-    console.log(this.state);
-
     return(
       <div className="Call-window-outer">
         <div className="Call-window-inner">
@@ -51,10 +48,12 @@ class CallWindow extends Component {
           <div className="Call-window-button-container">
             <input  type="button"
                     value="Previous"
+                    onClick={() => this.changeCustomer(this.state.current - 1)}
                     disabled={this.state.current === 0}/>
             <input type="button" value="Call"/>
             <input  type="button"
                     value="Next"
+                    onClick={() => this.changeCustomer(this.state.current + 1)}
                     disabled={this.state.current === (this.props.contacts.length - 1)}/>
           </div>
         </div>
