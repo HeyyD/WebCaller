@@ -17,7 +17,8 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects"),
-                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady)
+                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady),
+                callLists: Meteor.subscribe("callLists")
             },
             agents: []
         }
@@ -35,6 +36,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
     componentWillUnmount(){
         this.state.subscription.projects.stop();
         this.state.subscription.agents.stop();
+        this.state.subscription.callLists.stop();
     }
 
     projects(){
