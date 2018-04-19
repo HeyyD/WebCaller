@@ -13,7 +13,7 @@ class CallWindow extends Component {
       customer : {
         name: this.props.contacts[this.props.currentCustomer].name,
         company: this.props.contacts[this.props.currentCustomer].company,
-        number: this.props.contacts[this.props.currentCustomer].number
+        number: this.props.contacts[this.props.currentCustomer].phone
       }
     }
   }
@@ -27,10 +27,20 @@ class CallWindow extends Component {
   }
 
   changeCustomer(index) {
-
+    this.setState({
+      current: index,
+      customer: {
+        name: this.props.contacts[index].name,
+        company: this.props.contacts[index].company,
+        number: this.props.contacts[index].phone
+      }
+    })
   }
 
   render() {
+
+    console.log(this.state);
+
     return(
       <div className="Call-window-outer">
         <div className="Call-window-inner">
