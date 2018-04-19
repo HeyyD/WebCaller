@@ -15,6 +15,7 @@ class ContactList extends Component {
     this.state = {
       showCallWindow: false,
       currentCustomer: null,
+      currentList: null,
       tableRows: [],
       projectOptions: [],
       callListOptions: [],
@@ -78,6 +79,7 @@ class ContactList extends Component {
       </tr>);
     }
     this.setState({
+      currentList: list,
       tableRows: tableRows
     })
   }
@@ -112,7 +114,9 @@ class ContactList extends Component {
             </tbody>
           </table>
           {this.state.showCallWindow ?
-            <CallWindow toggle={this.toggleCallWindow} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
+            <CallWindow toggle={this.toggleCallWindow}
+                        currentCustomer={this.state.currentCustomer}
+                        contacts={this.state.currentList}/>
             : null
           }
         </div>
