@@ -39,7 +39,7 @@ export default class ProjectForm extends React.Component {
             }
         }
         this.setState({
-            activeProjects: temp
+            projectAgents: temp
         })
     }
 
