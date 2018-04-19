@@ -7,6 +7,14 @@ class CallWindow extends Component {
     this.call = this.call.bind(this);
     this.hangUp = this.hangUp.bind(this);
     this.changeCustomer = this.changeCustomer.bind(this);
+
+    this.state = {
+      current: this.props.currentCustomer,
+      customer : {
+        name: this.props.contacts[this.props.currentCustomer].name,
+        company: this.props.contacts[this.props.currentCustomer].company
+      }
+    }
   }
 
   call() {
@@ -17,7 +25,7 @@ class CallWindow extends Component {
 
   }
 
-  changeCustomer() {
+  changeCustomer(index) {
 
   }
 
@@ -26,8 +34,8 @@ class CallWindow extends Component {
       <div className="Call-window-outer">
         <div className="Call-window-inner">
           <h1>Call</h1>
-          <h3>{this.props.customer.name}</h3>
-          <h3>{this.props.customer.company}</h3>
+          <h3>{this.state.customer.name}</h3>
+          <h3>{this.state.customer.company}</h3>
           <div className="Call-window-button-container">
             <input type="button" value="Previous"/>
             <input type="button" value="Call"/>
