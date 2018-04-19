@@ -16,7 +16,12 @@ export default class ContactAddForm extends React.Component {
         this.setState({contacts: props.contacts});
     }
 
-   
+    handleChange(event){
+        this.setState({[event.target.name]: event.target.value});
+    }
+
+    
+
     render(){
 
     }
