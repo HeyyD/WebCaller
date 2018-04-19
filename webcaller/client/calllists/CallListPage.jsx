@@ -30,7 +30,7 @@ export default class CallListPage extends TrackerReact(React.Component) {
         return(
             <div>
                 <CallListForm />
-                <ul>
+                <ul className="projects">
                     {this.lists().map( (list)=>{
                         return <CallListSingle key={list._id} list={list}/>
                     })}                
