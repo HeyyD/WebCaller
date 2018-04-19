@@ -11,6 +11,7 @@ class CallWindow extends Component {
 
     this.state = {
       current: this.props.currentCustomer,
+      calling: false,
       button: {
         value: 'Call',
         onClick: this.call
@@ -27,6 +28,7 @@ class CallWindow extends Component {
     Meteor.call('makeCall', this.state.customer.number);
 
     this.setState({
+      calling: true,
       button: {
         value: 'Hang up',
         onClick: this.hangUp
@@ -36,6 +38,7 @@ class CallWindow extends Component {
 
   hangUp() {
     this.setState({
+      calling: false,
       button: {
         value: 'Call',
         onClick: this.call
