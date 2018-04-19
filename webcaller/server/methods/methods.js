@@ -43,7 +43,7 @@ Meteor.methods({
             name: project.name,
             description: project.description,
             callLists: project.callLists,
-            agents: project.agents._id,
+            agents: project.agents,
             createdAt: Date(),
             user: Meteor.userId()
         });
