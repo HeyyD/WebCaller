@@ -24,7 +24,7 @@ export default class ProjectForm extends React.Component {
     }
 
     agents(){
-        
+        return Meteor.users.find().fetch();
     }
 
     addProject(event){
