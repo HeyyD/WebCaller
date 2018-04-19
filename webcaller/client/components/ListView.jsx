@@ -42,7 +42,7 @@ export default class ListView extends Component {
     }
 
     itemSelected(event){
-        
+        this.setState({ newItem: event.target.value});
     }
 
     render(){
