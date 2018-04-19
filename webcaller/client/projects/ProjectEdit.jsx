@@ -12,13 +12,18 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
         this.state = {
             subscription: {
-                projects: Meteor.subscribe("userProjects", this.onSubscriptionReady)
+                projects: Meteor.subscribe("userProjects", this.onSubscriptionReady),
+                agents: Meteor.subscribe("subUsers", this.agentsLoaded)
             },
             _id: '',
             projectName: '',
             projectDescription: '',
             projectAgents: []
         }
+    }
+
+    agentsLoaded(){
+        
     }
 
     onSubscriptionReady(){
@@ -39,6 +44,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
     componentWillUnmount(){
         this.state.subscription.projects.stop();
+        this.state.subscription.agents.stop();
     }
 
     editProject(event) {
@@ -57,12 +63,23 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         event.preventDefault();
     }
     onDeleteListItem(listItem){
-        
+        let array = this.state.projectAgents;
+        for(let i = 0; i < array.length; i++){
+            if(array[i].username === listItem){
+                array.splice(i, 1);
+            }
+        }
+        this.setState({
+            projectAgents: array
+        });
     }
 
     render(){
-        console.log(this.state);
-        let temp = [];
+        console.log(this.state.projectAgents);
+        let agentArray = [];
+        for(let i = 0; i < this.state.projectAgents; i++){
+            agentArray.push(this.state.projectAgents[i].username)
+        }
         return(
             <form>
                 <div>
@@ -88,10 +105,10 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     <button onClick={this.editProject}>Save changes</button>
                 </div>
                 <ListView 
-                    options={test} 
-                    listContent={test} 
+                    options={agentArray} 
+                    listContent={agentArray} 
                     onDeleteListItem={this.onDeleteListItem}
-                    onAddListItem={}/>
+                    onAddListItem={this.onDeleteListItem}/>
             </form>
         );
     }
