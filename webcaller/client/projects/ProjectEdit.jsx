@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import DropdownMultiSelect from '../components/DropdownMultiSelect';
+
 
 export default class ProjectEdit extends TrackerReact(React.Component) {
 
@@ -57,6 +59,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     }
 
     render(){
+        console.log(this.state);
+        let temp = [];
         return(
             <form>
                 <div>

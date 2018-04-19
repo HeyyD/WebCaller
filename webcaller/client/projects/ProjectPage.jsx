@@ -29,7 +29,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         let agents = Meteor.users.find().fetch();
         this.setState({
             agents: agents
-        })
+        });
     }
 
     componentWillUnmount(){
