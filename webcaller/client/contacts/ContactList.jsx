@@ -10,14 +10,16 @@ class ContactList extends Component {
     this.endCall = this.endCall.bind(this);
 
     this.state = {
-      showCallWindow: false
+      showCallWindow: false,
+      currentCustomer: null
     };
   }
 
   makeCall(customer){
     Meteor.call('makeCall', customer.number, (error) => {
       this.setState({
-        showCallWindow: !this.state.showCallWindow
+        showCallWindow: !this.state.showCallWindow,
+        currentCustomer: customer
       })
     });
   }
@@ -31,7 +33,7 @@ class ContactList extends Component {
         <td>{contactList[i].phone}</td>
         <td>{contactList[i].name}</td>
         <td>{contactList[i].company}</td>
-        <td className="Contact-table-call"><a href="" onClick={ () => this.makeCall(contactList[i])}>Call</a></td>
+        <td className="Contact-table-call"><a href="" onClick={ () => this.makeCall(i)}>Call</a></td>
       </tr>);
     }
     return tableRows;
@@ -60,7 +62,7 @@ class ContactList extends Component {
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
-            <CallWindow onClick={this.endCall} customers={this.props.contacts}/>
+            <CallWindow onClick={this.endCall} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
             : null
           }
         </div>
