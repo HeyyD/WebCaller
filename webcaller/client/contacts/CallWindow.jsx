@@ -6,6 +6,10 @@ class CallWindow extends Component {
     super(props);
   }
 
+  call() {
+    
+  }
+
   render() {
     return(
       <div className="Call-window-outer">
