@@ -7,7 +7,11 @@ class CallWindow extends Component {
   }
 
   call() {
-    
+
+  }
+
+  hangUp() {
+
   }
 
   render() {
