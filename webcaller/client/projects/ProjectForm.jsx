@@ -66,10 +66,15 @@ export default class ProjectForm extends React.Component {
 
     addProject(event){
         console.log(this.state.projectAgents);
-        let users = []
+        let users = [];
         for(let i = 0; i < this.state.projectAgents.length; i++){
             users.push(this.state.projectAgents[i]._id);
-        } 
+        }
+        
+        let lists = [];
+        for(let i = 0; i < this.state.callLists.length; i++){
+            lists.push(this.state.callLists[i]._id);
+        }
         
         let project = {
             name: this.state.projectName,
