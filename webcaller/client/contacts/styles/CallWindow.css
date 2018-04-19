@@ -39,8 +39,11 @@
   bottom: 20px;
 }
 
-.Call-window-button-container button {
+.Call-window-button-container input {
   width: 120px;
   margin: 10px;
+  color: white;
+  background: #584164;
+  border: solid #584164;
   display: inline;
 }

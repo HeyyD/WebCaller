@@ -29,9 +29,9 @@ class CallWindow extends Component {
           <h3>{this.props.customer.name}</h3>
           <h3>{this.props.customer.company}</h3>
           <div className="Call-window-button-container">
-            <button>Previous</button>
-            <button onClick={this.props.onClick}>Hang up</button>
-            <button>Next</button>
+            <input type="button" value="Previous"/>
+            <input type="button" value="Call"/>
+            <input type="button" value="Next"/>
           </div>
         </div>
       </div>
