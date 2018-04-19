@@ -71,10 +71,11 @@ class CallWindow extends Component {
 
     let next = this.state.current === (this.props.contacts.length - 1) || this.state.calling === true;
     let previous = this.state.current === 0 || this.state.calling === true;
-    
+
     return(
       <div className="Call-window-outer" onClick={this.exit}>
         <div className="Call-window-inner">
+          <button onClick={this.exit}>X</button>
           <h1>Call</h1>
           <h3>{this.state.customer.name}</h3>
           <h3>{this.state.customer.company}</h3>
