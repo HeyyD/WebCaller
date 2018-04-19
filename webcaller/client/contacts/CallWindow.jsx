@@ -58,7 +58,10 @@ class CallWindow extends Component {
   }
 
   exit(event) {
-    if(event.target.className === 'Call-window-outer') {
+
+    event.stopPropagation();
+
+    if(event.target.name === 'exitButton' || event.target.className === 'Call-window-outer') {
       if(this.state.calling) {
         alert('You cannot exit call view while calling to the customer');
       } else {
@@ -75,7 +78,7 @@ class CallWindow extends Component {
     return(
       <div className="Call-window-outer" onClick={this.exit}>
         <div className="Call-window-inner">
-          <button onClick={this.exit}>X</button>
+          <button name="exitButton" onClick={this.exit}>X</button>
           <h1>Call</h1>
           <h3>{this.state.customer.name}</h3>
           <h3>{this.state.customer.company}</h3>
