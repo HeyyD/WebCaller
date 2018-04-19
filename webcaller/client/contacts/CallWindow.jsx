@@ -68,6 +68,10 @@ class CallWindow extends Component {
   }
 
   render() {
+
+    let next = this.state.current === (this.props.contacts.length - 1) || this.state.calling === true;
+    let previous = this.state.current === 0 || this.state.calling === true;
+    
     return(
       <div className="Call-window-outer" onClick={this.exit}>
         <div className="Call-window-inner">
@@ -79,12 +83,12 @@ class CallWindow extends Component {
             <input  type="button"
                     value="Previous"
                     onClick={() => this.changeCustomer(this.state.current - 1)}
-                    disabled={this.state.current === 0}/>
+                    disabled={previous}/>
             <input  type="button" value={this.state.button.value} onClick={this.state.button.onClick}/>
             <input  type="button"
                     value="Next"
                     onClick={() => this.changeCustomer(this.state.current + 1)}
-                    disabled={this.state.current === (this.props.contacts.length - 1)}/>
+                    disabled={next}/>
           </div>
         </div>
       </div>
