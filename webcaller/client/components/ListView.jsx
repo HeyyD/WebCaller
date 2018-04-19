@@ -24,7 +24,6 @@ export default class ListView extends Component {
 
     deleteItem(event, index){
         event.preventDefault();
-        console.log(event);
         let array = this.state.listContent;
         let listItem = array[index];
         array.splice(index, 1);
@@ -36,7 +35,6 @@ export default class ListView extends Component {
 
     addListItem(event, listItem){
         if(this.state.newItem != ""){
-            console.log(this.props.onAddListItem);
             event.preventDefault();
             let array = this.state.listContent;
             array.push(listItem);
@@ -56,7 +54,6 @@ export default class ListView extends Component {
     }
 
     render(){
-        console.log("LISTA");
         return(
             <div className="viewContainer">
                 <div className="contentList">

@@ -29,6 +29,7 @@
 .contentList ul {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 .contentList li button {
     float: right;
