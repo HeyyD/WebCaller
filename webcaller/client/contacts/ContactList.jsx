@@ -43,8 +43,6 @@ class ContactList extends Component {
   initCallLists() {
     let cl = CallLists.find().fetch();
 
-    console.log(cl);
-
     for(let i = 0; i < cl.length; i++) {
       this.state.callListOptions.push(<option key={i} value={i}>{cl[i].name}</option>);
     }
@@ -86,7 +84,6 @@ class ContactList extends Component {
 
   callListChange(event) {
     this.createContactList(this.state.callLists[event.target.value].contacts);
-    console.log(event.target.value);
   }
 
   render(){
