@@ -59,7 +59,7 @@ class ContactList extends Component {
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
-            <CallWindow onClick={this.toggleCallWindow} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
+            <CallWindow toggle={this.toggleCallWindow} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
             : null
           }
         </div>
