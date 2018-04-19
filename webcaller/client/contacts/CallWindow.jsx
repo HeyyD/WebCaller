@@ -7,6 +7,7 @@ class CallWindow extends Component {
     this.call = this.call.bind(this);
     this.hangUp = this.hangUp.bind(this);
     this.changeCustomer = this.changeCustomer.bind(this);
+    this.exit = this.exit.bind(this);
 
     this.state = {
       current: this.props.currentCustomer,
@@ -53,9 +54,15 @@ class CallWindow extends Component {
     });
   }
 
+  exit(event) {
+    if(event.target.className === 'Call-window-outer') {
+      console.log('exit');
+    }
+  }
+
   render() {
     return(
-      <div className="Call-window-outer">
+      <div className="Call-window-outer" onClick={this.exit}>
         <div className="Call-window-inner">
           <h1>Call</h1>
           <h3>{this.state.customer.name}</h3>
