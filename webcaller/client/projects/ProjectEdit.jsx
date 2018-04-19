@@ -10,6 +10,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.handleChange = this.handleChange.bind(this);
         this.editProject = this.editProject.bind(this);
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+        this.agentsLoaded = this.agentsLoaded.bind(this);
+        this.onDeleteListItem = this.onDeleteListItem.bind(this);
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects", this.onSubscriptionReady),
@@ -18,12 +20,25 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             _id: '',
             projectName: '',
             projectDescription: '',
-            projectAgents: []
+            projectAgents: [],
+            agents: []
         }
     }
 
     agentsLoaded(){
+        let agents = Meteor.users.find().fetch();
+        let project = CallProjects.find({_id:this.props.id}).fetch()[0];
         
+
+        let projectAgents = [];
+        for(let i = 0; i < project.agents.length; i++){
+            projectAgents.push(Meteor.users.find({_id: project.agents[i]}).fetch()[0]);
+        }
+
+        this.setState({
+            agents: agents,
+            projectAgents: projectAgents
+        });
     }
 
     onSubscriptionReady(){
@@ -53,7 +68,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             _id : this.state._id,
             name: this.state.projectName,
             description : this.state.projectDescription,
-            agents: this.state.agents
+            agents: this.state.projectAgents
         };
 
         Meteor.call('modifyProject', p);
@@ -62,22 +77,32 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
         event.preventDefault();
     }
-    onDeleteListItem(listItem){
+    onDeleteListItem(listItems){
         let array = this.state.projectAgents;
+        console.log(array);
         for(let i = 0; i < array.length; i++){
-            if(array[i].username === listItem){
+            let remove = true;
+            for(let j = 0; j < listItems.length; j++){
+                if(array[i].username == listItems[j]){
+                    remove = false;
+                }
+            }
+            if(remove){
                 array.splice(i, 1);
+                break;
             }
         }
         this.setState({
             projectAgents: array
         });
     }
+    getUnselectedAgents(){
+        
+    }
 
     render(){
-        console.log(this.state.projectAgents);
         let agentArray = [];
-        for(let i = 0; i < this.state.projectAgents; i++){
+        for(let i = 0; i < this.state.projectAgents.length; i++){
             agentArray.push(this.state.projectAgents[i].username)
         }
         return(
