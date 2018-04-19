@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DropdownMultiSelect from '../components/DropdownMultiSelect';
 
 import './styles/ProjectForm.css';
 
