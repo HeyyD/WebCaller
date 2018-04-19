@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-import DropdownMultiSelect from '../components/DropdownMultiSelect';
-
 
 export default class ProjectEdit extends TrackerReact(React.Component) {
 
