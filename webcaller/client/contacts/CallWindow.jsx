@@ -59,7 +59,11 @@ class CallWindow extends Component {
 
   exit(event) {
     if(event.target.className === 'Call-window-outer') {
-      console.log('exit');
+      if(this.state.calling) {
+        alert('You cannot exit call view while calling to the customer');
+      } else {
+        this.props.toggle();
+      }
     }
   }
 
