@@ -28,8 +28,8 @@ export default class ProjectForm extends React.Component {
         return Meteor.users.find().fetch();
     }
 
-    onSelect(){
-        
+    onSelect(selected){
+
     }
 
     addProject(event){

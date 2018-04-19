@@ -14,9 +14,17 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects"),
-                agents: Meteor.subscribe("subUsers")
-            }
+                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady)
+            },
+            agents: []
         }
+    }
+
+    onSubscriptionReady(){   
+        let agents = CallProjects.find().fetch();
+        this.setState({
+            agents: agents
+        })
     }
 
     componentWillUnmount(){
