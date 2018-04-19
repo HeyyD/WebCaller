@@ -46,13 +46,16 @@ export default class ProjectForm extends React.Component {
             projectName: "",
             projectDescription: "",
             callLists: [],
-            projectAgents: []
+            projectAgents: [],
+            agents: []
         })
         event.preventDefault();
     }
 
     componentWillReceiveProps(props){
-        
+        this.setState({
+            agents: props.agents
+        })
     }
 
     render(){
