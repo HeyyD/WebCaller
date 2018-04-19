@@ -13,7 +13,11 @@ class CallWindow extends Component {
           <h1>Call</h1>
           <h3>{this.props.customer.name}</h3>
           <h3>{this.props.customer.company}</h3>
-          <button onClick={this.props.onClick}>Hang up</button>
+          <div className="Call-window-button-container">
+            <button>Previous</button>
+            <button onClick={this.props.onClick}>Hang up</button>
+            <button>Next</button>
+          </div>
         </div>
       </div>
     );
