@@ -2,7 +2,7 @@
     list-style-type: none;
     border: 1px solid;
     width: 75%;
-    margin-top: 15px;
+    margin-top: 1rem;
 }
 .agentBtn{
     width: 10%;
@@ -12,5 +12,8 @@ td {
 }
 .agentSingle {
     font-weight: bold;
-    padding-left: 10px;
+    padding-left: 1rem;
+}
+.cancelButton{
+    margin-left: 2rem;
 }
