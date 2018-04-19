@@ -11,15 +11,30 @@ export default class ProjectPage extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
+
+        this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+
         this.state = {
             subscription: {
-                projects: Meteor.subscribe("userProjects")
-            }
+                projects: Meteor.subscribe("userProjects"),
+                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady)
+            },
+            agents: []
         }
+
+
+    }
+
+    onSubscriptionReady(){   
+        let agents = Meteor.users.find().fetch();
+        this.setState({
+            agents: agents
+        });
     }
 
     componentWillUnmount(){
         this.state.subscription.projects.stop();
+        this.state.subscription.agents.stop();
     }
 
     projects(){
@@ -30,7 +45,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
             return(
                 <div>
-                    <ProjectForm />
+                    <ProjectForm agents={this.state.agents}/>
                     <table className="projectList">
                         {this.projects().map( (project)=>{
                             return <ProjectSingle key={project._id} project={project}/>
