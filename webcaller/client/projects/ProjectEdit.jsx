@@ -31,6 +31,10 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         }
     }
 
+    listsLoaded(){
+        
+    }
+
     agentsLoaded(){
         let agents = Meteor.users.find().fetch();
         let project = CallProjects.find({_id:this.props.id}).fetch()[0];
