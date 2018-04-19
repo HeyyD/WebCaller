@@ -67,7 +67,7 @@ Meteor.methods({
             $set: {name: project.name}
         })
     },
-
+    
     deleteProject(projectId) {
         CallProjects.remove({_id: projectId});
     },
@@ -83,6 +83,12 @@ Meteor.methods({
         Roles.removeUsersFromRoles(user, ['admin']);
         console.log(user);
         return user;
+    },
+    modifyAgent(agent){
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new agents!');
+        }
+        Accounts.setPassword(agent._id, agent.password)
     },
     deleteAgent(agentID){
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {

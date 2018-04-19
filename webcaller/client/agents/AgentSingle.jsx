@@ -13,11 +13,11 @@ export default class AgentSingle extends React.Component {
     }
 
     render(){
-        return(<li className="agentSingle">{this.props.agent.username}
-                    <button className="agentBtn" onClick={this.deleteAgent}>
+        return(<tr><td className="agentSingle"><a href={"agents/"+this.props.agent._id}>{this.props.agent.username}</a></td>
+                    <td className="agentBtn"><button  onClick={this.deleteAgent}>
                         delete
-                    </button>
-                </li>);
+                    </button></td>
+                </tr>);
     }
 
 }

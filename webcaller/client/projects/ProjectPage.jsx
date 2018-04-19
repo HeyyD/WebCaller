@@ -46,11 +46,11 @@ export default class ProjectPage extends TrackerReact(React.Component) {
             return(
                 <div>
                     <ProjectForm agents={this.state.agents}/>
-                    <ul className="projects">
+                    <table className="projectList">
                         {this.projects().map( (project)=>{
                             return <ProjectSingle key={project._id} project={project}/>
                         })}                
-                    </ul>
+                    </table>
                 </div>
             );
         }else {
