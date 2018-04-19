@@ -14,6 +14,10 @@ class CallWindow extends Component {
 
   }
 
+  changeCustomer() {
+    
+  }
+
   render() {
     return(
       <div className="Call-window-outer">
