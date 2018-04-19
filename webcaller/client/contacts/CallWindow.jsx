@@ -10,6 +10,10 @@ class CallWindow extends Component {
 
     this.state = {
       current: this.props.currentCustomer,
+      button: {
+        value: 'Call',
+        onClick: this.call
+      },
       customer : {
         name: this.props.contacts[this.props.currentCustomer].name,
         company: this.props.contacts[this.props.currentCustomer].company,
@@ -18,13 +22,24 @@ class CallWindow extends Component {
     }
   }
 
-  call(event) {
-    event.target.value = 'Hang up';
+  call() {
     Meteor.call('makeCall', this.state.customer.number);
+
+    this.setState({
+      button: {
+        value: 'Hang up',
+        onClick: this.hangUp
+      }
+    });
   }
 
   hangUp() {
-
+    this.setState({
+      button: {
+        value: 'Call',
+        onClick: this.call
+      }
+    });
   }
 
   changeCustomer(index) {
@@ -51,7 +66,7 @@ class CallWindow extends Component {
                     value="Previous"
                     onClick={() => this.changeCustomer(this.state.current - 1)}
                     disabled={this.state.current === 0}/>
-            <input  type="button" value="Call" onClick={this.call}/>
+            <input  type="button" value={this.state.button.value} onClick={this.state.button.onClick}/>
             <input  type="button"
                     value="Next"
                     onClick={() => this.changeCustomer(this.state.current + 1)}
