@@ -10,6 +10,7 @@ class ContactList extends Component {
     this.toggleCallWindow = this.toggleCallWindow.bind(this);
     this.initProjects = this.initProjects.bind(this);
     this.initCallLists = this.initCallLists.bind(this);
+    this.callListChange = this.callListChange.bind(this);
 
     this.state = {
       showCallWindow: false,
@@ -78,6 +79,11 @@ class ContactList extends Component {
     }
     return tableRows;
   }
+
+  callListChange(event) {
+    console.log(event.target.value);
+  }
+
   render(){
     return (
         <div>
@@ -86,7 +92,7 @@ class ContactList extends Component {
             {this.state.projectOptions}
           </select>
 
-          <select>
+          <select onChange={this.callListChange}>
             {this.state.callListOptions}
           </select>
 
