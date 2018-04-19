@@ -8,11 +8,20 @@ class ContactList extends Component {
     this.createContactList = this.createContactList.bind(this);
     this.openCall = this.openCall.bind(this);
     this.toggleCallWindow = this.toggleCallWindow.bind(this);
+    this.initProjects = this.initProjects.bind(this);
 
     this.state = {
       showCallWindow: false,
-      currentCustomer: null
+      currentCustomer: null,
+      subscription: {
+        projects: Meteor.subscribe("userProjects", this.initProjects)
+      }
     };
+  }
+
+  initProjects() {
+    let projects = CallProjects.find().fetch();
+    console.log(projects);
   }
 
   toggleCallWindow() {
