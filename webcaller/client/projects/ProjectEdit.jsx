@@ -13,8 +13,10 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             subscription: {
                 projects: Meteor.subscribe("userProjects", this.onSubscriptionReady)
             },
+            _id: '',
             projectName: '',
-            projectDescription: ''
+            projectDescription: '',
+            projectAgents: []
         }
     }
 
@@ -25,7 +27,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.setState({
             _id: project._id,
             projectName: project.name,
-            projectDescription: project.description
+            projectDescription: project.description,
+            projectAgents: project.agents
         })
     }
 
