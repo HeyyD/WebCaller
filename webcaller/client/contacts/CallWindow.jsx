@@ -18,8 +18,9 @@ class CallWindow extends Component {
     }
   }
 
-  call() {
-
+  call(event) {
+    event.target.value = 'Hang up';
+    Meteor.call('makeCall', this.state.customer.number);
   }
 
   hangUp() {
@@ -50,7 +51,7 @@ class CallWindow extends Component {
                     value="Previous"
                     onClick={() => this.changeCustomer(this.state.current - 1)}
                     disabled={this.state.current === 0}/>
-            <input type="button" value="Call"/>
+            <input  type="button" value="Call" onClick={this.call}/>
             <input  type="button"
                     value="Next"
                     onClick={() => this.changeCustomer(this.state.current + 1)}
