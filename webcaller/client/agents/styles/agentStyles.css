@@ -2,10 +2,15 @@
     list-style-type: none;
     border: 1px solid;
     width: 100%;
+    margin-top: 15px;
 }
 .agentBtn{
     width: 10%;
 }
 td {
     border: 1px solid;
+}
+.agentSingle {
+    font-weight: bold;
+    padding-left: 10px;
 }
