@@ -7,6 +7,7 @@ export default class ListView extends Component {
 
     constructor(props){
         super(props);
+        this.itemSelected = this.itemSelected.bind(this);
         this.state = {
             options: [],
             listContent: [],

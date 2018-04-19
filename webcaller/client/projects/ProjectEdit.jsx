@@ -102,7 +102,22 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     }
 
     onAddListItem(array){
-
+        let projectAgents = this.state.projectAgents;
+        for(let i = 0; i < array.length; i++){
+            let add = true;
+            for(let j = 0; j < projectAgents; j++){
+                if(array[i] == projectAgents.username){
+                    add = false;
+                }
+            }
+            if(add){
+                projectAgents.push(Meteor.users.find({username: array[i]}).fetch()[0]);
+                break;
+            }
+        }
+        this.setState({
+            projectAgents: projectAgents
+        })
     }
 
     getUnselectedAgents(){
