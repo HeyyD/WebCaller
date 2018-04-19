@@ -44,7 +44,7 @@ class ContactList extends Component {
     console.log(cl);
 
     for(let i = 0; i < cl.length; i++) {
-      this.state.callListOptions.push(<option key={i}>{cl[i].name}</option>);
+      this.state.callListOptions.push(<option key={i} value={i}>{cl[i].name}</option>);
     }
 
     this.setState({
