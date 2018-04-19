@@ -38,7 +38,7 @@ export default class ListView extends Component {
         this.setState({
             listContent: array
         });
-        this.props.addListItem(array);
+        this.props.onAddListItem(array);
     }
 
     itemSelected(event){

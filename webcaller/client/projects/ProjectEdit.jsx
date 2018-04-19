@@ -85,7 +85,11 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     </div>
                     <button onClick={this.editProject}>Save changes</button>
                 </div>
-                <ListView options={test} listContent={test} />
+                <ListView 
+                    options={test} 
+                    listContent={test} 
+                    onDeleteListItem={}
+                    onAddListItem={}/>
             </form>
         );
     }
