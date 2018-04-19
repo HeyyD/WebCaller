@@ -45,7 +45,8 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         let p = {
             _id : this.state._id,
             name: this.state.projectName,
-            description : this.state.projectDescription
+            description : this.state.projectDescription,
+            agents: this.state.agents
         };
 
         Meteor.call('modifyProject', p);
