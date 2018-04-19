@@ -41,13 +41,13 @@ export default class AgentsPage extends TrackerReact(React.Component) {
         if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
             return(
                 <div>
-                <AgentsForm projects={this.state.projects} />
-                <ul className="agentsList">
+                <AgentsForm projects={this.state.projects}/>
+                <table className="agentsList">
                     {this.subUsers().map((agent) => {
                         if(agent._id != Meteor.userId())
                             return <AgentSingle key={agent._id} agent={agent} />;
                     })}
-                </ul>
+                </table>
             </div>
             );
         }else {

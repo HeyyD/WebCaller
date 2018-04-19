@@ -1,7 +1,16 @@
 .agentsList{
     list-style-type: none;
     border: 1px solid;
+    width: 75%;
+    margin-top: 15px;
 }
-.agentsBtn{
-    align: right;
+.agentBtn{
+    width: 10%;
+}
+td {
+    border: 1px solid;
+}
+.agentSingle {
+    font-weight: bold;
+    padding-left: 10px;
 }
