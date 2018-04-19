@@ -37,6 +37,8 @@ export default class ProjectPage extends TrackerReact(React.Component) {
 
     onCallListLoad(){
         let lists = CallLists.find().fetch();
+        console.log("LISTAT");
+        console.log(lists);
         this.setState({
             callLists: lists
         });
