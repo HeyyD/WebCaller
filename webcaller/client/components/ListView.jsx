@@ -31,8 +31,13 @@ export default class ListView extends Component {
         this.props.onDeleteListItem(array);
     }
 
-    addListItem(){
-        
+    addListItem(listItem){
+        let array = this.state.listItem;
+        array.push(listItem);
+        this.setState({
+            listContent: array
+        });
+        this.props.addListItem(array);
     }
 
     render(){
