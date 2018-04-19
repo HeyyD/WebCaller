@@ -13,6 +13,8 @@ class ContactList extends Component {
     this.state = {
       showCallWindow: false,
       currentCustomer: null,
+      projectOptions: [],
+      projects: [],
       subscription: {
         projects: Meteor.subscribe("userProjects", this.initProjects)
       }
@@ -20,8 +22,15 @@ class ContactList extends Component {
   }
 
   initProjects() {
-    let projects = CallProjects.find().fetch();
-    console.log(projects);
+    let pr = CallProjects.find().fetch();
+
+    for(let i = 0; i < pr.length; i++) {
+      this.state.projectOptions.push(<option key={i}>{pr[i].name}</option>);
+    }
+
+    this.setState({
+      projects : pr
+    });
   }
 
   toggleCallWindow() {
@@ -56,7 +65,7 @@ class ContactList extends Component {
         <div>
 
           <select>
-            <option>Project</option>
+            {this.state.projectOptions}
           </select>
 
           <select>
