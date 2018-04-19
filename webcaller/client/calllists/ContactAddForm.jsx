@@ -12,8 +12,11 @@ export default class ContactAddForm extends React.Component {
         this.addContact = this.addContact.bind(this);
     }
 
-    
+    componentWillReceiveProps(props){
+        this.setState({contacts: props.contacts});
+    }
 
+   
     render(){
 
     }
