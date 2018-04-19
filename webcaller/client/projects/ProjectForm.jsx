@@ -51,6 +51,10 @@ export default class ProjectForm extends React.Component {
         event.preventDefault();
     }
 
+    componentWillReceiveProps(props){
+        
+    }
+
     render(){
         let temp = [];
         return(
