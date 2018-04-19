@@ -55,7 +55,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
             return(
                 <div>
-                    <ProjectForm agents={this.state.agents}/>
+                    <ProjectForm agents={this.state.agents} lists={this.state.callLists}/>
                     <table className="projectList">
                         {this.projects().map( (project)=>{
                             return <ProjectSingle key={project._id} project={project}/>
