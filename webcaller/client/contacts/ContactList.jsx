@@ -7,12 +7,18 @@ class ContactList extends Component {
     super(props);
     this.createContactList = this.createContactList.bind(this);
     this.makeCall = this.makeCall.bind(this);
-    this.endCall = this.endCall.bind(this);
+    this.toggleCallWindow = this.toggleCallWindow.bind(this);
 
     this.state = {
       showCallWindow: false,
       currentCustomer: null
     };
+  }
+
+  toggleCallWindow() {
+    this.setState({
+      showCallWindow: !this.state.showCallWindow
+    });
   }
 
   makeCall(customer){
@@ -38,13 +44,6 @@ class ContactList extends Component {
     }
     return tableRows;
   }
-
-  endCall() {
-    this.setState({
-      showCallWindow: !this.state.showCallWindow
-    })
-  }
-
   render(){
     return (
         <div>
@@ -62,7 +61,7 @@ class ContactList extends Component {
           </table>
           <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
-            <CallWindow onClick={this.endCall} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
+            <CallWindow onClick={this.toggleCallWindow} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
             : null
           }
         </div>
