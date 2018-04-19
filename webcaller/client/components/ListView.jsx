@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './styles/ListView.css';
+
 
 export default class ListView extends Component {
 
@@ -18,24 +20,37 @@ export default class ListView extends Component {
         })
     }
 
+    deleteItem(event, index){
+        event.preventDefault();
+        console.log(event);
+        let array = this.state.listContent;
+        array.splice(index, 1);
+        this.setState({
+            listContent: array
+        })
+        this.props.onDeleteListItem(array);
+    }
+
 
     render(){
+        console.log("LISTA" + this.state.options);
         return(
-            <div>
-                <div>
+            <div className="viewContainer">
+                <div className="contentList">
                     <ul>
-                        {this.state.listContent.map((listItem) => {
-                            return <li>{listItem}<button>X</button></li>;    
+                        {this.state.listContent.map((listItem, i) => {
+                            return <li>{listItem}<button onClick={(event) => this.deleteItem(event, i)}>Delete</button></li>;    
                         })}
                     </ul>
                 </div>
                 <div>
                     <select defaultValue="default" onChange={this.itemSelected}>
+                        <option disabled value="default"> -- select an option -- </option>
                         {this.state.options.map((option) => {
-                            <option>{option}</option>
+                            return <option>{option}</option>;
                         })}
                     </select>
-                    <button>Add</button>
+                    <button onClick={this.addListItem}>Add</button>
                 </div>
             </div>
         );

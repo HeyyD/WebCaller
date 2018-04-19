@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import ListView from '../components/ListView';
 
 export default class ProjectEdit extends TrackerReact(React.Component) {
 
@@ -58,6 +59,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
     render(){
         console.log(this.state);
+        let test = ["ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol","ebin", "lol"];
         let temp = [];
         return(
             <form>
@@ -83,6 +85,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     </div>
                     <button onClick={this.editProject}>Save changes</button>
                 </div>
+                <ListView options={test} listContent={test} />
             </form>
         );
     }
