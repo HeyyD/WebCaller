@@ -13,7 +13,8 @@ export default class ProjectForm extends React.Component {
             projectName: "",
             projectDescription: "",
             callLists: [],
-            projectAgents: []
+            projectAgents: [],
+            agents: []
         });
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,7 +30,17 @@ export default class ProjectForm extends React.Component {
     }
 
     onSelect(selected){
-
+        let temp = []
+        for(let i = 0; i < selected.length; i++){
+            for(let j = 0; j < this.state.agents.length; j++){
+                if(selected[i] === this.state.agents[j].name){
+                    temp.push(this.state.agents[j]);
+                }
+            }
+        }
+        this.setState({
+            activeProjects: temp
+        })
     }
 
     addProject(event){
@@ -53,12 +64,14 @@ export default class ProjectForm extends React.Component {
     }
 
     componentWillReceiveProps(props){
+        console.log(props);
         this.setState({
             agents: props.agents
         })
     }
 
     render(){
+        console.log(this.props.agents);
         let temp = [];
         return(
             <form>

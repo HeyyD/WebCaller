@@ -11,6 +11,9 @@ export default class ProjectPage extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
+
+        this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects"),
@@ -18,10 +21,12 @@ export default class ProjectPage extends TrackerReact(React.Component) {
             },
             agents: []
         }
+
+
     }
 
     onSubscriptionReady(){   
-        let agents = Meteor.users.find().fetch();;
+        let agents = Meteor.users.find().fetch();
         this.setState({
             agents: agents
         })
