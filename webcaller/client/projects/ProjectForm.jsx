@@ -47,6 +47,7 @@ export default class ProjectForm extends React.Component {
     }
 
     render(){
+        let temp = [];
         return(
             <form>
                 <div>
@@ -58,6 +59,13 @@ export default class ProjectForm extends React.Component {
                             ref="projectName" 
                             onChange={this.handleChange}/>
                     </div>
+                    {
+                        this.agents().map( (agent, i, map) => {
+                            temp.push(agent.username);
+                            if(map.length - 1 == i)
+                                return <DropdownMultiSelect key={agent._id} onSelect={this.onSelect} title="Agents" options={temp} />;
+                        })
+                    }
                     <div>
                         <label>Description:</label>
                     </div>
