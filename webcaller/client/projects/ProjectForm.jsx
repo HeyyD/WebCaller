@@ -28,6 +28,10 @@ export default class ProjectForm extends React.Component {
         return Meteor.users.find().fetch();
     }
 
+    onSelect(){
+        
+    }
+
     addProject(event){
         let project = {
             name: this.state.projectName,
