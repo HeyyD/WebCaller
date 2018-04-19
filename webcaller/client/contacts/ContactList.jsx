@@ -42,14 +42,18 @@ class ContactList extends Component {
 
   initCallLists() {
     let cl = CallLists.find().fetch();
+    let temp = [];
+
+    //temp.push();
 
     for(let i = 0; i < cl.length; i++) {
-      this.state.callListOptions.push(<option key={i} value={i}>{cl[i].name}</option>);
+      temp.push(<option key={i} value={i}>{cl[i].name}</option>);
     }
 
     this.setState({
+      callListOptions: temp,
       callLists: cl
-    })
+    });
   }
 
   toggleCallWindow() {
@@ -94,7 +98,8 @@ class ContactList extends Component {
             {this.state.projectOptions}
           </select>
 
-          <select onChange={this.callListChange}>
+          <select defaultValue="default" onChange={this.callListChange}>
+            <option value="default" disabled>Select call list</option>
             {this.state.callListOptions}
           </select>
 
