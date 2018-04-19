@@ -23,6 +23,10 @@ export default class ProjectForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    agents(){
+        
+    }
+
     addProject(event){
         let project = {
             name: this.state.projectName,
