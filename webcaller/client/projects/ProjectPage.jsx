@@ -13,6 +13,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         super(props);
 
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+        this.onCallListLoad = this.onCallListLoad.bind(this);
 
         this.state = {
             subscription: {

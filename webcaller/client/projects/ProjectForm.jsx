@@ -30,6 +30,10 @@ export default class ProjectForm extends React.Component {
         return Meteor.users.find().fetch();
     }
 
+    callLists(){
+        return callLists.find().fetch();
+    }
+
     onSelect(selected){
         let temp = []
         console.log(temp);
@@ -75,12 +79,12 @@ export default class ProjectForm extends React.Component {
     componentWillReceiveProps(props){
         console.log(props);
         this.setState({
-            agents: props.agents
+            agents: props.agents,
+            callLists: props.callLists
         });
     }
 
     render(){
-        console.log(this.props.agents);
         let temp = [];
         return(
             <form>
