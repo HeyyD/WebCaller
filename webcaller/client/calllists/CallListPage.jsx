@@ -26,7 +26,6 @@ export default class CallListPage extends TrackerReact(React.Component) {
     }
 
     render(){
-        console.log(this.lists())
         return(
             <div>
                 <CallListForm />

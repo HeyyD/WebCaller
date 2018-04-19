@@ -22,7 +22,14 @@ export default class CallListContents extends TrackerReact(React.Component) {
         return CallLists.find({_id: this.props.id}).fetch();
     }
 
+    getContacts(){
+        let c = this.callLists()[0].contacts;
+        return Object.keys(c[0]);
+    }
+
     render(){
+        console.log(this.getContacts());
+        //        <ContactAddForm contacts={this.getContacts()}/>
         return(
             <div>
                 <ul>
@@ -33,5 +40,4 @@ export default class CallListContents extends TrackerReact(React.Component) {
             </div>
         );
     }
-
 }
