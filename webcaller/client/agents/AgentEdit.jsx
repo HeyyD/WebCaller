@@ -24,7 +24,7 @@ onSubscriptionReady(){
         _id: agent._id,
         username: agent.username,
         password: agent.password
-    })
+    });
 }
 
 handleChange(event){
@@ -45,6 +45,11 @@ editAgent(event) {
 
     Meteor.call('modifyAgent', a);
 
+    FlowRouter.go('agents');
+
+    event.preventDefault();
+}
+back(event){
     FlowRouter.go('agents');
 
     event.preventDefault();
@@ -75,6 +80,7 @@ render(){
                 
                 
                 <button onClick={this.editAgent}>Save Changes</button>
+                <button onClick={this.back} className="cancelButton">Cancel</button>
             </div>
         </form>
     );
