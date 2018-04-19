@@ -45,6 +45,15 @@ class ContactList extends Component {
   render(){
     return (
         <div>
+
+          <select>
+            <option>Project</option>
+          </select>
+
+          <select>
+            <option>Call list</option>
+          </select>
+
           <table className="Contact-table">
             <thead>
             <tr>
@@ -57,7 +66,6 @@ class ContactList extends Component {
               {this.createContactList()}
             </tbody>
           </table>
-          <button id="addContactButton" onClick={this.props.onClick}>Add Contact</button>
           {this.state.showCallWindow ?
             <CallWindow toggle={this.toggleCallWindow} currentCustomer={this.state.currentCustomer} contacts={this.props.contacts}/>
             : null
