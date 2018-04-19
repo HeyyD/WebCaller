@@ -62,11 +62,9 @@ Meteor.methods({
             $set: {name: project.name}
         })
     },
-
     deleteProject(projectId) {
         CallProjects.remove({_id: projectId});
     },
-
     insertAgent(newUserData){
 
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
@@ -106,6 +104,9 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
+    deleteCallList(listId) {
+        CallLists.remove({_id: listId});
+    },
     parseExcelData(data, listName, listDescription) {
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
@@ -135,14 +136,10 @@ Meteor.methods({
             createdAt: Date(),
             user: Meteor.userId()
         });
-<<<<<<< HEAD
     },
     insertContact(callListId, contacts) {
         CallLists.update(callListId, {
             $set: {contacts: contacts}
         });
-=======
-        
->>>>>>> 5f0967fc7c1cc40e0897ef7e006f20d31d1d73c1
     }
 });
