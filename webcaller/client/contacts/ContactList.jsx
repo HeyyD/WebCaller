@@ -9,6 +9,7 @@ class ContactList extends Component {
     this.openCall = this.openCall.bind(this);
     this.toggleCallWindow = this.toggleCallWindow.bind(this);
     this.initProjects = this.initProjects.bind(this);
+    this.initCallLists = this.initCallLists.bind(this);
 
     this.state = {
       showCallWindow: false,
@@ -16,7 +17,8 @@ class ContactList extends Component {
       projectOptions: [],
       projects: [],
       subscription: {
-        projects: Meteor.subscribe("userProjects", this.initProjects)
+        projects: Meteor.subscribe("userProjects", this.initProjects),
+        callLists: Meteor.subscribe('callLists', this.initCallLists)
       }
     };
   }
@@ -31,6 +33,10 @@ class ContactList extends Component {
     this.setState({
       projects : pr
     });
+  }
+
+  initCallLists() {
+    console.log('init');
   }
 
   toggleCallWindow() {
