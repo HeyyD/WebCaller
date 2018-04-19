@@ -37,6 +37,8 @@ Meteor.methods({
             throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
         }
 
+        console.log(project);
+
         CallProjects.insert({
             name: project.name,
             description: project.description,
