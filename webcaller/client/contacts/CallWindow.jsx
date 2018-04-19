@@ -4,6 +4,9 @@ class CallWindow extends Component {
 
   constructor(props) {
     super(props);
+    this.call = this.call.bind(this);
+    this.hangUp = this.hangUp.bind(this);
+    this.changeCustomer = this.changeCustomer.bind(this);
   }
 
   call() {
@@ -15,7 +18,7 @@ class CallWindow extends Component {
   }
 
   changeCustomer() {
-    
+
   }
 
   render() {
