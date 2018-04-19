@@ -15,6 +15,7 @@ class ContactList extends Component {
     this.state = {
       showCallWindow: false,
       currentCustomer: null,
+      tableRows: [],
       projectOptions: [],
       callListOptions: [],
       projects: [],
@@ -65,22 +66,24 @@ class ContactList extends Component {
     });
   }
 
-  createContactList(){
-    let contactList = this.props.contacts;
+  createContactList(list){
     let tableRows = [];
 
-    for(let i = 0; i < contactList.length; i++) {
+    for(let i = 0; i < list.length; i++) {
       tableRows.push(<tr key={i}>
-        <td>{contactList[i].phone}</td>
-        <td>{contactList[i].name}</td>
-        <td>{contactList[i].company}</td>
+        <td>{list[i].phone}</td>
+        <td>{list[i].name}</td>
+        <td>{list[i].company}</td>
         <td className="Contact-table-call"><a href="" onClick={ () => this.openCall(i)}>Call</a></td>
       </tr>);
     }
-    return tableRows;
+    this.setState({
+      tableRows: tableRows
+    })
   }
 
   callListChange(event) {
+    this.createContactList(this.state.callLists[event.target.value].contacts);
     console.log(event.target.value);
   }
 
@@ -105,7 +108,7 @@ class ContactList extends Component {
             </tr>
             </thead>
             <tbody className="Contact-table">
-              {this.createContactList()}
+              {this.state.tableRows}
             </tbody>
           </table>
           {this.state.showCallWindow ?
