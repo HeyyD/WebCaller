@@ -27,12 +27,25 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectDescription: '',
             projectAgents: [],
             agents: [],
-            unselectedAgents: []
+            unselectedAgents: [],
+            callLists: [],
+            projectAgents: []
         }
     }
 
     listsLoaded(){
-        
+        let lists = CallLists.find().fetch();
+        let project = CallProjects.find({_id:this.props.id}).fetch()[0];
+
+        let projectLists = [];
+        for(let i = 0; i < project.callLists.length; i++){
+            projectLists.push(CallLists.find({_id: project.callLists[i]}).fetch()[0])
+        }
+        this.setState({
+            callLists: lists,
+            projectLists: projectLists
+        });
+        //TÄHÄN METODIKUTSU
     }
 
     agentsLoaded(){
@@ -73,6 +86,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     componentWillUnmount(){
         this.state.subscription.projects.stop();
         this.state.subscription.agents.stop();
+        this.state.subscription.callLists.stop();
     }
 
     editProject(event) {
