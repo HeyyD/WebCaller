@@ -13,12 +13,6 @@ export default class CallListSingle extends React.Component {
     }
 
     render(){
-        /*return(
-            <li>
-                <a href={"calllists/"+this.props.list._id}>{this.props.list.name}</a>
-                <button onClick={this.deleteCallList}>X</button>
-            </li>
-        );*/
         return(
             <tr>
                 <td className="projectSingle"><a href={"calllists/"+this.props.list._id}>{this.props.list.name}</a></td>
