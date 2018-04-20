@@ -37,6 +37,8 @@ Meteor.methods({
             throw new Meteor.Error('not enough rights', 'Only admins can create new projects!');
         }
 
+        console.log(project);
+
         CallProjects.insert({
             name: project.name,
             description: project.description,
@@ -55,7 +57,10 @@ Meteor.methods({
         }
 
         CallProjects.update({_id: project._id}, {
-            $set: {description: project.description}
+            $set: {
+                description: project.description,
+                agents: project.agents
+            }
         })
 
         CallProjects.update({_id: project._id}, {
@@ -74,7 +79,14 @@ Meteor.methods({
         let user = Accounts.createUser(newUserData);
         Roles.addUsersToRoles(user, ['agent', Meteor.userId()]);
         Roles.removeUsersFromRoles(user, ['admin']);
+        console.log(user);
         return user;
+    },
+    modifyAgent(agent){
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can create new agents!');
+        }
+        Accounts.setPassword(agent._id, agent.password)
     },
     deleteAgent(agentID){
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {

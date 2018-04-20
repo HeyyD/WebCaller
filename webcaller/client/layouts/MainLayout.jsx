@@ -2,7 +2,6 @@ import React from 'react';
 import AccountsUI from '../../AccountsUI.jsx';
 
 function AdminNavi(){
-    console.log(Meteor.userId());
     if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
         return(
             <label className="adminNavi">
