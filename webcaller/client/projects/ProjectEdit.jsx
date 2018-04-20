@@ -15,17 +15,27 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onAddListItem = this.onAddListItem.bind(this);
         this.getUnselectedAgents = this.getUnselectedAgents.bind(this);
 
+        this.callListsLoaded = this.callListsLoaded.bind(this);
+        this.getUnselectedCallLists = this.getUnselectedCallLists.bind(this);
+        this.onAddListItemCallList = this.onAddListItemCallList.bind(this);
+        this.onDeleteListItemCallList = this.onDeleteListItemCallList.bind(this);
+
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects", this.onSubscriptionReady),
-                agents: Meteor.subscribe("subUsers", this.agentsLoaded)
+                agents: Meteor.subscribe("subUsers", this.agentsLoaded),
+                callLists: Meteor.subscribe("callLists", this.callListsLoaded)
             },
             _id: '',
             projectName: '',
             projectDescription: '',
             projectAgents: [],
             agents: [],
-            unselectedAgents: []
+            unselectedAgents: [],
+
+            projectCallLists: [],
+            callLists: [],
+            unselectedCallLists: []
         }
     }
 
@@ -46,6 +56,28 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectAgents: projectAgents
         });
         this.getUnselectedAgents();
+    }
+
+    callListsLoaded(){
+        let callLists = CallLists.find().fetch();
+        console.log("Call Lists : " + callLists.length);
+        let project = CallProjects.find({_id:this.props.id}).fetch()[0];
+        console.log("CALLLISTS LOADED");
+        
+
+        let projectCallLists = [];
+        
+        console.log("call lists moi " + project.callLists.length);
+        for(let i = 0; i < project.callLists.length; i++){
+            projectCallLists.push(CallLists.find({_id: project.callLists[i]}).fetch()[0]);
+            
+        }
+        console.log(projectCallLists);
+        this.setState({
+            callLists: callLists,
+            projectCallLists: projectCallLists
+        });
+        this.getUnselectedCallLists();
     }
 
     onSubscriptionReady(){
@@ -76,10 +108,17 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectAgents.push(this.state.projectAgents[i]._id);
         }
 
+        let projectCallLists = [];
+        for(let i = 0; i < this.state.projectCallLists.length; i++){
+            projectCallLists.push(this.state.projectCallLists[i]._id);
+            
+        }
+
         let p = {
             _id : this.state._id,
             name: this.state.projectName,
             description : this.state.projectDescription,
+            callLists: projectCallLists,
             agents: projectAgents
         };
 
@@ -89,6 +128,42 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
 
         event.preventDefault();
     }
+
+    onDeleteListItemCallList(listItem){
+        console.log("ONDELETE CALL LIST");
+        let array = this.state.projectCallLists;
+        
+        for(let i = 0; i < array.length; i++){
+            console.log(listItem)
+            if(array[i].name == listItem && array.length > 1){
+                array.splice(i, 1);
+            }
+            else if(array[i].name == listItem)
+                array = []
+        }
+        let unselected = this.state.unselectedCallLists;
+        unselected.push(CallLists.find({name: listItem}).fetch()[0])
+        this.setState({
+            projectCallLists: array,
+            unselectedCallLists: unselected
+        });
+        
+    }
+
+    onAddListItemCallList(listItem){
+        console.log("PROJECTEDIT CALL LIST");
+        console.log(listItem);
+        let callList = CallLists.find({name: listItem}).fetch()[0];
+        let projectCallLists = this.state.projectCallLists;
+        //let unselectedCallLists = this.state.unselectedCallLists;
+        projectCallLists.push(callList);
+        console.log(projectCallLists);
+        this.setState({
+            projectCallLists: projectCallLists
+        })
+        this.getUnselectedCallLists();
+    }
+
     onDeleteListItem(listItem){
         console.log("ONDELETE");
         let array = this.state.projectAgents;
@@ -141,6 +216,23 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         });
     }
 
+    getUnselectedCallLists(){
+        unselectedCallLists = this.state.callLists;
+        console.log("UNSELECTED LISTS");
+        console.log(unselectedCallLists);
+        for(let i = unselectedCallLists.length-1; i >= 0; i--){
+            for(let j = 0; j < this.state.projectCallLists.length; j++){
+                if(unselectedCallLists[i].name == this.state.projectCallLists[j].name){
+                    unselectedCallLists.splice(i, 1);
+                }
+            }
+        }
+
+        this.setState({
+            unselectedCallLists: unselectedCallLists
+        });
+    }
+
     render(){
         let agentArray = [];
         for(let i = 0; i < this.state.projectAgents.length; i++){
@@ -149,6 +241,15 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         let unselectedAgents = [];
         for(let i = 0; i < this.state.unselectedAgents.length; i++){
             unselectedAgents.push(this.state.unselectedAgents[i].username);
+        }
+
+        let callListArray = [];
+        for(let i = 0; i < this.state.projectCallLists.length; i++){
+            callListArray.push(this.state.projectCallLists[i].name)
+        }
+        let unselectedCallLists = [];
+        for(let i = 0; i < this.state.unselectedCallLists.length; i++){
+            unselectedCallLists.push(this.state.unselectedCallLists[i].name);
         }
         return(
             <form>
@@ -179,6 +280,12 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     listContent={agentArray} 
                     onDeleteListItem={this.onDeleteListItem}
                     onAddListItem={this.onAddListItem}/>
+                <br></br>
+                <ListView 
+                    options={unselectedCallLists} 
+                    listContent={callListArray} 
+                    onDeleteListItem={this.onDeleteListItemCallList}
+                    onAddListItem={this.onAddListItemCallList}/>
             </form>
         );
     }
