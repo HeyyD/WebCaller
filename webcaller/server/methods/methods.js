@@ -67,11 +67,9 @@ Meteor.methods({
             $set: {name: project.name}
         })
     },
-    
     deleteProject(projectId) {
         CallProjects.remove({_id: projectId});
     },
-
     insertAgent(newUserData){
 
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
@@ -118,6 +116,9 @@ Meteor.methods({
             user: Meteor.userId()
         });
     },
+    deleteCallList(listId) {
+        CallLists.remove({_id: listId});
+    },
     parseExcelData(data, listName, listDescription) {
         if(!Meteor.userId()){
             throw new Meteor.Error('not-authorized!');
@@ -149,6 +150,14 @@ Meteor.methods({
         });
     },
     insertContact(callListId, contacts) {
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can add contacts to list!');
+        }
+
         CallLists.update(callListId, {
             $set: {contacts: contacts}
         });

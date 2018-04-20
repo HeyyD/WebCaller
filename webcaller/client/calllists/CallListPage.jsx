@@ -25,16 +25,31 @@ export default class CallListPage extends TrackerReact(React.Component) {
         return CallLists.find().fetch();
     }
 
+    renderContent(){
+        if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+            return(
+                <div>
+                    <CallListForm />
+                    <ul className="projects">
+                        {this.lists().map( (list)=>{
+                            return <CallListSingle key={list._id} list={list}/>
+                        })}                
+                    </ul>
+                </div>
+            );
+        }else {
+            return(
+                <div>
+                    <p> Not authorized! </p>
+                </div>
+            );
+        }
+    }
+
     render(){
-        console.log(this.lists())
         return(
             <div>
-                <CallListForm />
-                <ul>
-                    {this.lists().map( (list)=>{
-                        return <CallListSingle key={list._id} list={list}/>
-                    })}                
-                </ul>
+                {this.renderContent()}
             </div>
         );
     }
