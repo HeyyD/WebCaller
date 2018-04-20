@@ -138,6 +138,14 @@ Meteor.methods({
         });
     },
     insertContact(callListId, contacts) {
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized!');
+        }
+
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            throw new Meteor.Error('not enough rights', 'Only admins can add contacts to list!');
+        }
+
         CallLists.update(callListId, {
             $set: {contacts: contacts}
         });
