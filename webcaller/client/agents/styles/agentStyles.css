@@ -1,0 +1,19 @@
+.agentsList{
+    list-style-type: none;
+    border: 1px solid;
+    width: 75%;
+    margin-top: 1rem;
+}
+.agentBtn{
+    width: 10%;
+}
+td {
+    border: 1px solid;
+}
+.agentSingle {
+    font-weight: bold;
+    padding-left: 1rem;
+}
+.cancelButton{
+    margin-left: 2rem;
+}

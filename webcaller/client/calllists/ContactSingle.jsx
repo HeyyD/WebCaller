@@ -17,14 +17,13 @@ export default class ContactSingle extends React.Component {
                     </tr>);
             i++;
         }
-        keys.push(<br></br>);
         return keys;
     }
 
     render(){
         let keys = this.readContact();
         return(
-            <table>
+            <table className="projectList">
                 <tbody>
                     {keys}
                 </tbody>

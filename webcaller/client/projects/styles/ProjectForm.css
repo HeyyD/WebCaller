@@ -2,3 +2,15 @@
     width: 25rem;
     height: 8rem;
 }
+.projectList{
+    width: 75%;
+    border: 1px solid;
+    margin-top: 15px;
+}
+.delBut{
+    width: 10%;
+}
+.projectSingle{
+    font-weight: bold;
+    padding-left: 10px;
+}
