@@ -11,6 +11,7 @@ class ContactList extends Component {
     this.initProjects = this.initProjects.bind(this);
     this.initCallLists = this.initCallLists.bind(this);
     this.callListChange = this.callListChange.bind(this);
+    this.projectChange = this.projectChange.bind(this);
 
     this.state = {
       showCallWindow: false,
@@ -23,7 +24,7 @@ class ContactList extends Component {
       callLists: [],
       subscription: {
         projects: Meteor.subscribe("userProjects", this.initProjects),
-        callLists: Meteor.subscribe('callLists', this.initCallLists)
+        callLists: Meteor.subscribe("callLists", this.initCallLists)
       }
     };
   }
@@ -43,8 +44,6 @@ class ContactList extends Component {
   initCallLists() {
     let cl = CallLists.find().fetch();
     let temp = [];
-
-    //temp.push();
 
     for(let i = 0; i < cl.length; i++) {
       temp.push(<option key={i} value={i}>{cl[i].name}</option>);
@@ -90,11 +89,33 @@ class ContactList extends Component {
     this.createContactList(this.state.callLists[event.target.value].contacts);
   }
 
+  projectChange(event) {
+    console.log(this.state.callListOptions);
+    console.log(this.state.projects);
+    console.log("PROJECT CHANGE " + event.target.value);
+
+    let tempProject = this.state.projects.find((project) => {
+      return event.target.value === project.name;
+    });
+
+    let cl = tempProject.callLists;
+    let temp = [];
+
+    for(let i = 0; i < cl.length; i++) {
+      console.log("NAME: " + cl[i].name);
+      temp.push(<option key={i} value={i}>{CallLists.find({_id: cl[i]}).fetch()[0].name}</option>);
+    }
+
+    this.setState({
+      callListOptions: temp
+    });
+  }
+
   render(){
     return (
         <div>
 
-          <select>
+          <select onChange={this.projectChange}>
             {this.state.projectOptions}
           </select>
 
