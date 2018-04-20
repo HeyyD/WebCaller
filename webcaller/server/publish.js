@@ -10,5 +10,5 @@ Meteor.publish("subUsers", function(){
 });
 
 Meteor.publish("callLists", function(){
-    return CallLists.find();
+    return CallLists.find({user: this.userId});
 })
