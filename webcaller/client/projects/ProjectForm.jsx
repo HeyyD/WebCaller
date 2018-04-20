@@ -30,6 +30,10 @@ export default class ProjectForm extends React.Component {
         return Meteor.users.find().fetch();
     }
 
+    callLists(){
+        return CallLists.find().fetch();
+    }
+
     onSelect(selected){
         let temp = []
         console.log(temp);
@@ -45,17 +49,37 @@ export default class ProjectForm extends React.Component {
         })
     }
 
+    onSelectList(selected){
+        let temp = []
+        console.log(temp);
+        for(let i = 0; i < selected.length; i++){
+            for(let j = 0; j < this.state.callLists.length; j++){
+                if(selected[i] === this.state.callLists[j].name){
+                    temp.push(this.state.callLists[j]);
+                }
+            }
+        }
+        this.setState({
+            projectAgents: temp
+        })
+    }
+
     addProject(event){
         console.log(this.state.projectAgents);
-        let users = []
+        let users = [];
         for(let i = 0; i < this.state.projectAgents.length; i++){
             users.push(this.state.projectAgents[i]._id);
-        } 
+        }
+        
+        let lists = [];
+        for(let i = 0; i < this.state.callLists.length; i++){
+            lists.push(this.state.callLists[i]._id);
+        }
         
         let project = {
             name: this.state.projectName,
             description: this.state.projectDescription,
-            callLists: this.state.callLists,
+            callLists: lists,
             agents: users
         };
         console.log(project.agents);
@@ -73,15 +97,18 @@ export default class ProjectForm extends React.Component {
     }
 
     componentWillReceiveProps(props){
+        console.log("PROPS")
         console.log(props);
         this.setState({
-            agents: props.agents
+            agents: props.agents,
+            callLists: props.lists
         });
     }
 
     render(){
-        console.log(this.props.agents);
+        console.log(this.state);
         let temp = [];
+        let tempLists = [];
         return(
             <form>
                 <div>
@@ -98,6 +125,13 @@ export default class ProjectForm extends React.Component {
                             temp.push(agent.username);
                             if(map.length - 1 == i)
                                 return <DropdownMultiSelect key={agent._id} onSelect={this.onSelect} title="Agents" options={temp} />;
+                        })
+                    }
+                    {
+                        this.callLists().map((list, i, map) => {
+                            tempLists.push(list.name);
+                            if(map.length -1 == i)
+                                return <DropdownMultiSelect key={list._id} onSelect={this.onSelectList} title="Call lists" options={tempLists} />;
                         })
                     }
                     <div>
