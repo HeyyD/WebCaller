@@ -11,31 +11,74 @@ export default class ProjectPage extends TrackerReact(React.Component) {
 
     constructor(props){
         super(props);
+
+        this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+        this.onCallListLoad = this.onCallListLoad.bind(this);
+
         this.state = {
             subscription: {
-                projects: Meteor.subscribe("userProjects")
-            }
+                projects: Meteor.subscribe("userProjects"),
+                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady),
+                callLists: Meteor.subscribe("callLists", this.onCallListLoad)
+            },
+            agents: [],
+            callLists: []
         }
+
+
+    }
+
+    onSubscriptionReady(){   
+        let agents = Meteor.users.find().fetch();
+        this.setState({
+            agents: agents
+        });
+    }
+
+    onCallListLoad(){
+        let lists = CallLists.find().fetch();
+        console.log("LISTAT");
+        console.log(lists);
+        this.setState({
+            callLists: lists
+        });
     }
 
     componentWillUnmount(){
         this.state.subscription.projects.stop();
+        this.state.subscription.agents.stop();
+        this.state.subscription.callLists.stop();
     }
 
     projects(){
         return CallProjects.find().fetch();
     }
 
+    renderContent(){
+        if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+            return(
+                <div>
+                    <ProjectForm agents={this.state.agents} lists={this.state.callLists}/>
+                    <table className="projectList">
+                        {this.projects().map( (project)=>{
+                            return <ProjectSingle key={project._id} project={project}/>
+                        })}                
+                    </table>
+                </div>
+            );
+        }else {
+            return(
+                <div>
+                    <p> Not authorized! </p>
+                </div>
+            );
+        }
+    }
+
     render(){
-        console.log(this.projects())
         return(
             <div>
-                <ProjectForm />
-                <ul className="projects">
-                    {this.projects().map( (project)=>{
-                        return <ProjectSingle key={project._id} project={project}/>
-                    })}                
-                </ul>
+                {this.renderContent()}
             </div>
         );
     }

@@ -1,24 +1,19 @@
-
-#lastRow{
-  text-align: center;
-  margin: 5pt;
-}
-
-#lastRow button {
-  margin: 5pt;
-  width: 100pt;
-}
-
-#addContact {
+.Add-contact {
   margin: auto;
-  display: table;
 }
 
-#addContact div {
-  display: table-row;
+.Add-contact td {
+  padding: 5px;
 }
 
-#addContact label, #addContact input{
-  margin: 5pt;
-  display: table-cell;
+.Last-row {
+  width: 100%;
+  text-align: center;
+}
+
+.Last-row button {
+  display: inline-block;
+  width: 150px;
+  font-size: 0.75em;
+  margin: 10px;
 }
