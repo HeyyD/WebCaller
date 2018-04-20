@@ -59,7 +59,8 @@ Meteor.methods({
         CallProjects.update({_id: project._id}, {
             $set: {
                 description: project.description,
-                agents: project.agents
+                agents: project.agents,
+                callLists: project.callLists
             }
         })
 
