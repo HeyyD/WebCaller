@@ -14,6 +14,10 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         this.onDeleteListItem = this.onDeleteListItem.bind(this);
         this.onAddListItem = this.onAddListItem.bind(this);
         this.getUnselectedAgents = this.getUnselectedAgents.bind(this);
+        this.listsLoaded = this.listsLoaded.bind(this);
+        this.onAddCallList = this.onAddCallList.bind(this);
+        this.onDeleteCallList = this.onDeleteCallList.bind(this);
+        this.getUnselectedLists = this.getUnselectedLists.bind(this);
 
         this.callListsLoaded = this.callListsLoaded.bind(this);
         this.getUnselectedCallLists = this.getUnselectedCallLists.bind(this);
@@ -32,7 +36,6 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             projectAgents: [],
             agents: [],
             unselectedAgents: [],
-
             projectCallLists: [],
             callLists: [],
             unselectedCallLists: []
@@ -42,15 +45,12 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     agentsLoaded(){
         let agents = Meteor.users.find().fetch();
         let project = CallProjects.find({_id:this.props.id}).fetch()[0];
-        console.log("AGENTS LOADED");
         
 
         let projectAgents = [];
         for(let i = 0; i < project.agents.length; i++){
             projectAgents.push(Meteor.users.find({_id: project.agents[i]}).fetch()[0]);
-            console.log("moi");
         }
-        console.log(projectAgents);
         this.setState({
             agents: agents,
             projectAgents: projectAgents
@@ -99,6 +99,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
     componentWillUnmount(){
         this.state.subscription.projects.stop();
         this.state.subscription.agents.stop();
+        this.state.subscription.callLists.stop();
     }
 
     editProject(event) {
@@ -111,7 +112,6 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         let projectCallLists = [];
         for(let i = 0; i < this.state.projectCallLists.length; i++){
             projectCallLists.push(this.state.projectCallLists[i]._id);
-            
         }
 
         let p = {
@@ -134,7 +134,6 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         let array = this.state.projectCallLists;
         
         for(let i = 0; i < array.length; i++){
-            console.log(listItem)
             if(array[i].name == listItem && array.length > 1){
                 array.splice(i, 1);
             }
@@ -215,7 +214,6 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
             unselectedAgents: unselectedAgents
         });
     }
-
     getUnselectedCallLists(){
         unselectedCallLists = this.state.callLists;
         console.log("UNSELECTED LISTS");
@@ -251,6 +249,7 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
         for(let i = 0; i < this.state.unselectedCallLists.length; i++){
             unselectedCallLists.push(this.state.unselectedCallLists[i].name);
         }
+      
         return(
             <form>
                 <div>
@@ -280,12 +279,14 @@ export default class ProjectEdit extends TrackerReact(React.Component) {
                     listContent={agentArray} 
                     onDeleteListItem={this.onDeleteListItem}
                     onAddListItem={this.onAddListItem}/>
+
                 <br></br>
                 <ListView 
                     options={unselectedCallLists} 
                     listContent={callListArray} 
                     onDeleteListItem={this.onDeleteListItemCallList}
                     onAddListItem={this.onAddListItemCallList}/>
+
             </form>
         );
     }

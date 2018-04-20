@@ -13,13 +13,16 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         super(props);
 
         this.onSubscriptionReady = this.onSubscriptionReady.bind(this);
+        this.onCallListLoad = this.onCallListLoad.bind(this);
 
         this.state = {
             subscription: {
                 projects: Meteor.subscribe("userProjects"),
-                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady)
+                agents: Meteor.subscribe("subUsers", this.onSubscriptionReady),
+                callLists: Meteor.subscribe("callLists", this.onCallListLoad)
             },
-            agents: []
+            agents: [],
+            callLists: []
         }
 
 
@@ -32,9 +35,19 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         });
     }
 
+    onCallListLoad(){
+        let lists = CallLists.find().fetch();
+        console.log("LISTAT");
+        console.log(lists);
+        this.setState({
+            callLists: lists
+        });
+    }
+
     componentWillUnmount(){
         this.state.subscription.projects.stop();
         this.state.subscription.agents.stop();
+        this.state.subscription.callLists.stop();
     }
 
     projects(){
@@ -45,7 +58,7 @@ export default class ProjectPage extends TrackerReact(React.Component) {
         if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
             return(
                 <div>
-                    <ProjectForm agents={this.state.agents}/>
+                    <ProjectForm agents={this.state.agents} lists={this.state.callLists}/>
                     <table className="projectList">
                         {this.projects().map( (project)=>{
                             return <ProjectSingle key={project._id} project={project}/>
